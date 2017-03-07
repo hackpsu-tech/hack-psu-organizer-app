@@ -79,7 +79,7 @@ $( document ).ready(function() {
              "sound":"default",
              "click_action" : null,
              "icon": null
-           }, 
+           },
            "priority": "high",
            "data": {
              "title": $("#titleInput").val(),
@@ -90,5 +90,28 @@ $( document ).ready(function() {
          };
          return notification;
       }
-   
+
 });
+
+/*  ------ QrScanner  --------*/
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+  $("#shirt").click(function(){
+      scanIt();
+  });
+  $("#checkin").click(function(){
+      scanIt();
+  });
+}
+
+function scanIt(url){
+  QRScanner.scan(function(err, text){
+    if(err){
+      alert(err._message)
+    }
+    alert('The QR Code contains: ' + text);
+  });
+
+}

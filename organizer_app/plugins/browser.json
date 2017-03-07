@@ -12,6 +12,9 @@
         },
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-qrscanner": {
+            "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
         }
     },
     "dependent_plugins": {}

@@ -18,6 +18,9 @@
     <feature name="Notification">
         <param name="ios-package" value="CDVNotification" />
     </feature>
+    <feature name="QRScanner">
+        <param name="ios-package" value="QRScanner" />
+    </feature>
     <name>HackPSU Organizer</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
