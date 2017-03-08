@@ -1,13 +1,29 @@
 $( document ).ready(function() {
    console.log("ready");
+   var config = {
+    apiKey: "AIzaSyBFluYW_DWuVeaEzCMNFzAaHlVQnK8Qzk8",
+    authDomain: "notifications-b01a3.firebaseapp.com",
+    databaseURL: "https://notifications-b01a3.firebaseio.com",
+  };
+  firebase.initializeApp(config);
    $("#pushNotification").click(function(event) {
       event.preventDefault();
       var ids = {
          "browser": [],
          "mobile": [],
       }
+      
+      if (firebase) {
+        console.log("firebase not null");
+        var updates = firebase.database().ref('updates');
 
-
+        var newUpdate = updates.push();
+        newUpdate.set({
+          "date": Date.now(),
+          "title": $("#titleInput").val(),
+          "body": $("#bodyInput").val() 
+        });
+      }
 
       $.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"browser"}', function( data ) {
          console.log(data);
