@@ -123,11 +123,34 @@ function onDeviceReady() {
 }
 
 function scanIt(url){
+  QRScanner.show();
+  $("body").css("visibility", "hidden");
+
   QRScanner.scan(function(err, text){
     if(err){
-      alert(err._message)
+      switch(err){
+        case 0:
+          alert("An unexpected error!!");
+          break;
+        case 1;
+          alert("Camera access denied!!");
+          break;
+        case 2;
+          alert("Camera access is restricted");
+          break;
+        case 3;
+          alert("The back camera is unavailable.");
+          break;
+        case 4;
+          alert("The front camera is unavailable.");
+          break;
+        default:
+          alert("error code: " + err);
+      }
     }
     alert('The QR Code contains: ' + text);
+    QRScanner.hide();
+    $("body").css("visibility", "visible");
   });
 
 }

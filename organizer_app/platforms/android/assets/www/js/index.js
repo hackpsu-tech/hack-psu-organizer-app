@@ -1,13 +1,29 @@
 $( document ).ready(function() {
    console.log("ready");
+   var config = {
+    apiKey: "AIzaSyBFluYW_DWuVeaEzCMNFzAaHlVQnK8Qzk8",
+    authDomain: "notifications-b01a3.firebaseapp.com",
+    databaseURL: "https://notifications-b01a3.firebaseio.com",
+  };
+  firebase.initializeApp(config);
    $("#pushNotification").click(function(event) {
       event.preventDefault();
       var ids = {
          "browser": [],
          "mobile": [],
       }
+      
+      if (firebase) {
+        console.log("firebase not null");
+        var updates = firebase.database().ref('updates');
 
-
+        var newUpdate = updates.push();
+        newUpdate.set({
+          "date": Date.now(),
+          "title": $("#titleInput").val(),
+          "body": $("#bodyInput").val() 
+        });
+      }
 
       $.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"browser"}', function( data ) {
          console.log(data);
@@ -112,7 +128,25 @@ function scanIt(url){
 
   QRScanner.scan(function(err, text){
     if(err){
-      alert(err._message)
+      switch(err){
+        case 0:
+          alert("An unexpected error!!");
+          break;
+        case 1;
+          alert("Camera access denied!!");
+          break;
+        case 2;
+          alert("Camera access is restricted");
+          break;
+        case 3;
+          alert("The back camera is unavailable.");
+          break;
+        case 4;
+          alert("The front camera is unavailable.");
+          break;
+        default:
+          alert("error code: " + err);
+      }
     }
     alert('The QR Code contains: ' + text);
     QRScanner.hide();

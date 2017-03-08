@@ -132,16 +132,16 @@ function scanIt(url){
         case 0:
           alert("An unexpected error!!");
           break;
-        case 1;
+        case 1:
           alert("Camera access denied!!");
           break;
-        case 2;
+        case 2:
           alert("Camera access is restricted");
           break;
-        case 3;
+        case 3:
           alert("The back camera is unavailable.");
           break;
-        case 4;
+        case 4:
           alert("The front camera is unavailable.");
           break;
         default:
