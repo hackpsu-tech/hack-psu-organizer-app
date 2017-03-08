@@ -1,6 +1,6 @@
 #titleInput {
-   white-space: pre-wrap; 
-   height: 50px; 
+   white-space: pre-wrap;
+   height: 50px;
    width: 500px;
    max-width: 90vw;
    padding: 0px;
@@ -8,8 +8,8 @@
 }
 
 #bodyInput {
-   white-space: pre-wrap; 
-   height: 50px; 
+   white-space: pre-wrap;
+   height: 50px;
    width: 500px;
    max-width: 90vw;
    padding: 0px;

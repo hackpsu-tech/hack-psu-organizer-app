@@ -19,6 +19,7 @@
 		9F6BB3279C8E4C88BC408BEB /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = C05E135E1F5C4B80A925BB12 /* CDVNotification.m */; };
 		C7C5437BA4C3405C8EDC36E7 /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 76F6C40132BE4DBE81089FD0 /* CDVNotification.bundle */; };
 		5ED3E753BAC84DD68D8E1C3B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53731098F0714F8A952670D5 /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3D25D1FAEB8E43CFA6046A39 /* QRScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB28170AED7842A9935024EE /* QRScanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		EF8777914A4D44288DAEADCD /* CDVNotification.h */ = {isa = PBXFileReference; name = "CDVNotification.h"; path = "cordova-plugin-dialogs/CDVNotification.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		76F6C40132BE4DBE81089FD0 /* CDVNotification.bundle */ = {isa = PBXFileReference; name = "CDVNotification.bundle"; path = "CDVNotification.bundle"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.plug-in; explicitFileType = undefined; includeInIndex = 0; };
 		53731098F0714F8A952670D5 /* AudioToolbox.framework */ = {isa = PBXFileReference; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		FB28170AED7842A9935024EE /* QRScanner.swift */ = {isa = PBXFileReference; name = "QRScanner.swift"; path = "cordova-plugin-qrscanner/QRScanner.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			children = (
 				C05E135E1F5C4B80A925BB12 /* CDVNotification.m */,
 				EF8777914A4D44288DAEADCD /* CDVNotification.h */,
+				FB28170AED7842A9935024EE /* QRScanner.swift */,
 			);
 			name = Plugins;
 			path = "HackPSU Organizer/Plugins";
@@ -285,6 +288,7 @@
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				9F6BB3279C8E4C88BC408BEB /* CDVNotification.m in Sources */,
+				3D25D1FAEB8E43CFA6046A39 /* QRScanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +324,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				PRODUCT_NAME = "HackPSU Organizer";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Bridging-Header.h";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -342,6 +349,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				PRODUCT_NAME = "HackPSU Organizer";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Bridging-Header.h";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -368,6 +378,9 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Bridging-Header.h";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -393,6 +406,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Bridging-Header.h";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

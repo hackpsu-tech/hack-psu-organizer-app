@@ -95,7 +95,7 @@ $( document ).ready(function() {
              "sound":"default",
              "click_action" : null,
              "icon": null
-           }, 
+           },
            "priority": "high",
            "data": {
              "title": $("#titleInput").val(),
@@ -106,5 +106,51 @@ $( document ).ready(function() {
          };
          return notification;
       }
-   
+
 });
+
+/*  ------ QrScanner  --------*/
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+  $("#shirt").click(function(){
+      scanIt();
+  });
+  $("#checkin").click(function(){
+      scanIt();
+  });
+}
+
+function scanIt(url){
+  QRScanner.show();
+  $("body").css("visibility", "hidden");
+
+  QRScanner.scan(function(err, text){
+    if(err){
+      switch(err){
+        case 0:
+          alert("An unexpected error!!");
+          break;
+        case 1;
+          alert("Camera access denied!!");
+          break;
+        case 2;
+          alert("Camera access is restricted");
+          break;
+        case 3;
+          alert("The back camera is unavailable.");
+          break;
+        case 4;
+          alert("The front camera is unavailable.");
+          break;
+        default:
+          alert("error code: " + err);
+      }
+    }
+    alert('The QR Code contains: ' + text);
+    QRScanner.hide();
+    $("body").css("visibility", "visible");
+  });
+
+}

@@ -92,3 +92,19 @@ $( document ).ready(function() {
       }
    
 });
+
+/*  ------ QrScanner  --------*/
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+    scanner(QRScanner);
+}
+
+function scanner(stuff){
+  if(!stuff){
+    conlsole.log("nope");
+  }else{
+    console.log("yep!!");
+  }
+}
