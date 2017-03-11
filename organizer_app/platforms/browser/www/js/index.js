@@ -147,6 +147,21 @@ function onDeviceReady() {
 		return notification;
 	}
 
+	$("#takePicture").click(function() {
+		navigator.camera.getPicture(function(imageURI) {
+			selectedImage = imageURI;
+			console.log("imageURI: " + imageURI);
+			console.log("camera success");
+		}, function(message) {
+			console.log("camera failure: " + message);
+			alert("Image Selection Failed");
+		}, {
+			destinationType: Camera.DestinationType.DATA_URL,
+		    sourceType: Camera.PictureSourceType.CAMERA,
+		    popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY)
+		});
+	});
+
 	$("#choosePicture").click(function() {
 		navigator.camera.getPicture(function(imageURI) {
 			selectedImage = imageURI;
