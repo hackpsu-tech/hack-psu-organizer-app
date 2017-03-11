@@ -53,6 +53,10 @@
       <true/>
     </dict>
     <key>NSCameraUsageDescription</key>
-    <string>The camera is used to scan QR codes.</string>
+    <string/>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string/>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string/>
   </dict>
 </plist>

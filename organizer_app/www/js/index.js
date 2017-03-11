@@ -2,30 +2,62 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
+	var selectedImage = null;
+	var imageUrl = null;
+	var ids = null;
 	var config = {
 		apiKey: "AIzaSyBFluYW_DWuVeaEzCMNFzAaHlVQnK8Qzk8",
 		authDomain: "notifications-b01a3.firebaseapp.com",
 		databaseURL: "https://notifications-b01a3.firebaseio.com",
+		storageBucket: "notifications-b01a3.appspot.com",
+		messagingSenderId: "385399873291"
 	};
 	firebase.initializeApp(config);
 	$("#pushNotification").click(function(event) {
 		event.preventDefault();
-		var ids = {
+		ids = {
 			"browser": [],
 			"mobile": [],
 		}
 
 		if (firebase) {
-			console.log("firebase not null");
-			var updates = firebase.database().ref('updates');
+			imageUrl = null;
+			if (selectedImage != null) {
+				var storageRef = firebase.storage().ref();
+				var uuid = guid();
+				var newUpload = storageRef.child($("#titleInput").val() + '-' + uuid + '.jpg');
+				var uploadTask = newUpload.putString(selectedImage, 'base64', {contentType:'image/jpg'});
+				uploadTask.on('state_changed', function(snapshot) {
 
-			var newUpdate = updates.push();
-			newUpdate.set({
-				"date": Date.now(),
-				"title": $("#titleInput").val(),
-				"body": $("#bodyInput").val() 
-			});
+				}, function(error) {
+					console.log("file could not be uploaded");
+					alert("Image Upload Failed");
+				}, function() {
+					console.log("file upload success");
+					imageUrl = uploadTask.snapshot.downloadURL;
+					pushNotification();
+					console.log("download url: " + uploadTask.snapshot.downloadURL);
+				});
+			}
+			else {
+				alert("notification did not have an image");
+			}
+
+			
 		}
+		selectedImage = null;
+	});
+
+	function pushNotification() {
+		var updates = firebase.database().ref('updates');
+
+		var newUpdate = updates.push();
+		newUpdate.set({
+			"date": Date.now(),
+			"title": $("#titleInput").val(),
+			"body": $("#bodyInput").val(),
+			"url": imageUrl 
+		});
 
 		$.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"browser"}', function( data ) {
 			 console.log(data);
@@ -87,7 +119,7 @@ function onDeviceReady() {
 				});
 			}
 		});
-	});
+	}
 
 	function initNotification() {
 		var notification = { "notification": {
@@ -105,6 +137,38 @@ function onDeviceReady() {
 			"registration_ids" : null
 		};
 		return notification;
+	}
+
+	$("#choosePicture").click(function() {
+		navigator.camera.getPicture(function(imageURI) {
+			selectedImage = imageURI;
+
+			console.log("camera success");
+		}, function(message) {
+			console.log("camera failure: " + message);
+			alert("Image Selection Failed");
+		}, {
+		    destinationType: Camera.DestinationType.FILE_URI,
+		    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+		    popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY)
+		});
+	});
+
+	function guid() {
+	  function s4() {
+	    return Math.floor((1 + Math.random()) * 0x10000)
+	      .toString(16)
+	      .substring(1);
+	  }
+	  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+	    s4() + '-' + s4() + s4() + s4();
+	}
+
+	// Reposition the popover if the orientation changes. 
+	window.onorientationchange = function() {
+	    var cameraPopoverHandle = new CameraPopoverHandle();
+	    var cameraPopoverOptions = new CameraPopoverOptions(0, 0, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY);
+	    cameraPopoverHandle.setPosition(cameraPopoverOptions);
 	}
   $("#shirt").click(function(){
       scanIt();

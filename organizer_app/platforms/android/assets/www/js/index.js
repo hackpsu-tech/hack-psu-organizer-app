@@ -106,6 +106,15 @@ function onDeviceReady() {
 		};
 		return notification;
 	}
+
+	$("#choosePicture").click(function() {
+		if (device.platform == "browser") {
+			console.log("choosing picture on browser");
+		}
+		else {
+			console.log("choosing picture on mobile");
+		}
+	});
   $("#shirt").click(function(){
       scanIt();
   });

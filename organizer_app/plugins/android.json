@@ -15,6 +15,9 @@
         },
         "cordova-plugin-qrscanner": {
             "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
         }
     },
     "dependent_plugins": {
