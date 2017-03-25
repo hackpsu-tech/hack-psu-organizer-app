@@ -1,4 +1,3 @@
-
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
@@ -25,16 +24,11 @@ function onDeviceReady() {
 			if (selectedImage != null) {
 
 				var storageRef = firebase.storage().ref();
-				console.log("28");
 				var uuid = guid();
-				console.log("30");
 				var newUpload = storageRef.child($("#titleInput").val() + '-' + uuid + '.jpg');
-				console.log("32");
 
 				selectedImage = selectedImage.replace(/\s/g, '');
-				console.log("selectedImage: " + selectedImage);
 				var uploadTask = newUpload.putString(selectedImage, 'base64', {contentType:'image/jpg'});
-				console.log("34");
 				uploadTask.on('state_changed', function(snapshot) {
 					console.log("36");
 				}, function(error) {
@@ -67,6 +61,7 @@ function onDeviceReady() {
 			"url": imageUrl 
 		});
 
+/*
 		$.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"browser"}', function( data ) {
 			 console.log(data);
 			 for (var i = 0; i < data.length; i++) {
@@ -127,6 +122,7 @@ function onDeviceReady() {
 				});
 			}
 		});
+*/
 	}
 
 	function initNotification() {
