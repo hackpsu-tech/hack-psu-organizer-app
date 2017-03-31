@@ -255,9 +255,9 @@ function logicCheck(data){
 		 return 0;
 	}else if(data.rsvp === false){
 		 return 1;
-	}else if(data.signed_in === true || data.got_shirt === true ){
+	}else if(d data.got_shirt === true ){
 		 return 2;
-	}else if(data.rsvp === true && data.signed_in === false && data.got_shirt === false){
+	}else if(data.rsvp === true && data.got_shirt === false){
 		registerPost(data._id);
 		 return 3;
 	}else return 4;
