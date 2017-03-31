@@ -26,3 +26,11 @@
 .right {
    text-align: right;
 }
+
+#scanner-data{
+  background-color:#bb6bdb;
+}
+
+tr, td {
+    border: 1px solid black;
+}

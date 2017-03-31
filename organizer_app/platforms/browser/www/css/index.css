@@ -26,3 +26,14 @@
 .right {
    text-align: right;
 }
+
+#scanner-data{
+  margin-left:400px;
+  max-width:300px;
+  min-height:150px;
+  background-color:#bb6bdb;
+}
+
+tr, td {
+    border: 1px solid black;
+}
