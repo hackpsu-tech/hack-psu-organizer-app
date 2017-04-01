@@ -1,4 +1,3 @@
-
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
@@ -17,7 +16,8 @@ function onDeviceReady() {
 		event.preventDefault();
 		ids = {
 			"browser": [],
-			"mobile": [],
+			"Android": [],
+            "iOS": []
 		}
 
 		if (firebase) {
@@ -25,16 +25,11 @@ function onDeviceReady() {
 			if (selectedImage != null) {
 
 				var storageRef = firebase.storage().ref();
-				console.log("28");
 				var uuid = guid();
-				console.log("30");
 				var newUpload = storageRef.child($("#titleInput").val() + '-' + uuid + '.jpg');
-				console.log("32");
 
 				selectedImage = selectedImage.replace(/\s/g, '');
-				console.log("selectedImage: " + selectedImage);
 				var uploadTask = newUpload.putString(selectedImage, 'base64', {contentType:'image/jpg'});
-				console.log("34");
 				uploadTask.on('state_changed', function(snapshot) {
 					console.log("36");
 				}, function(error) {
@@ -66,6 +61,7 @@ function onDeviceReady() {
 			"body": $("#bodyInput").val(),
 			"url": imageUrl
 		});
+
 
 		$.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"browser"}', function( data ) {
 			 console.log(data);
@@ -101,12 +97,68 @@ function onDeviceReady() {
 		$.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"Android"}', function( data ) {
 			console.log(data);
 			for (var i = 0; i < data.length; i++) {
-			 	ids.mobile.push(data[i]._id);
+			 	ids.Android.push(data[i]._id);
 				console.log("MOBILE PUSHING: " + data[i]._id);
 			}
 			var notification = initNotification();
-			notification.registration_ids = ids.mobile;
+			notification.registration_ids = ids.Android;
 			notification.notification.click_action = "FCM_PLUGIN_ACTIVITY";
+			if (notification.registration_ids.length > 0) {
+				console.log("pushing mobile notifications");
+				$.ajax({
+					url: 'https://fcm.googleapis.com/fcm/send',
+					type: "POST",
+					processData : false,
+					beforeSend: function (xhr) {
+						xhr.setRequestHeader('Content-Type', 'application/json');
+						xhr.setRequestHeader('Authorization', 'key=AAAAWbufXws:APA91bHfXsEZoJ7x4Zqe9qctxnL_73gknZfmznmP7f666KwkULCZ0yrTcueBVPWtZbfNTzK0y9kGWQy4M7h6hw6AESf6TGlgO2YVkJEj-HUDD1GksNtZsJ0mzeroaEodL8wq8oX__luN');
+					},
+					data: JSON.stringify(notification),
+					success: function () {
+						console.log("Mobile Success");
+					},
+					error: function(error) {
+						console.log(error);
+					}
+				});
+			}
+		});
+    
+	    $.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"iOS"}', function( data ) {
+			console.log(data);
+			for (var i = 0; i < data.length; i++) {
+			 	ids.iOS.push(data[i]._id);
+				console.log("MOBILE PUSHING: " + data[i]._id);
+			}
+			console.log(ids.iOS);
+			var notification = {
+
+				"notification":{
+				    "title": ($("#titleInput").val() == null ? " " : $("#titleInput").val()),
+				    "body": ($("#bodyInput").val() == null ? " " : $("#bodyInput").val()),
+				    "sound":"default",
+				    "click_action":"FCM_PLUGIN_ACTIVITY",
+				    "icon": null
+				  },
+				  "data":{
+				    "title": $("#titleInput").val(),
+				    "body": $("#bodyInput").val()
+				  },
+				  "registration_ids": ids.iOS
+				/*
+                "notification":{
+                    "title": $("#titleInput").val(),
+                    "body": $("#bodyInput").val(),
+                    "sound": "default",
+                    "click_action": "FCM_PLUGIN_ACTIVITY",
+                    "icon": null
+                  },
+                  "data":{
+                    "title": $("#titleInput").val(),
+				    "body": $("#bodyInput").val()
+                  },
+                  "registration_ids": ids.iOS */
+            };
 			if (notification.registration_ids.length > 0) {
 				console.log("pushing mobile notifications");
 				$.ajax({
