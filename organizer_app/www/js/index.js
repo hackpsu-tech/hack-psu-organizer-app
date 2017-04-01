@@ -46,7 +46,7 @@ function onDeviceReady() {
 				alert("notification did not have an image");
 			}
 
-			
+
 		}
 		selectedImage = null;
 	});
@@ -59,7 +59,7 @@ function onDeviceReady() {
 			"date": Date.now(),
 			"title": $("#titleInput").val(),
 			"body": $("#bodyInput").val(),
-			"url": imageUrl 
+			"url": imageUrl
 		});
 
 
@@ -239,24 +239,25 @@ function onDeviceReady() {
 	    s4() + '-' + s4() + s4() + s4();
 	}
 
-	// Reposition the popover if the orientation changes. 
+	// Reposition the popover if the orientation changes.
 	window.onorientationchange = function() {
 	    var cameraPopoverHandle = new CameraPopoverHandle();
 	    var cameraPopoverOptions = new CameraPopoverOptions(0, 0, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY);
 	    cameraPopoverHandle.setPosition(cameraPopoverOptions);
 	}
   $("#shirt").click(function(){
-      scanIt();
+			$(".center").css("display", "none");
+			scanIt(1);
   });
   $("#checkin").click(function(){
-      scanIt();
+			$(".center").css("display", "none");
+			scanIt(2);
   });
 }
 
-function scanIt(url){
+function scanIt(use){
   QRScanner.show();
   $("body").css("visibility", "hidden");
-
   QRScanner.scan(function(err, text){
     if(err){
       switch(err){
@@ -279,10 +280,89 @@ function scanIt(url){
           alert("error code: " + err);
       }
     }
-    alert('The QR Code contains: ' + text);
+		if(use == 1){
+			dataCheck(text);
+		}else if(use == 2){
+			registerPost(text);
+			 $("#scanner-data").html("<h1> sent!! </h1> <button>Done</button>");
+			 $("#scanner-data button").click(function(){
+					 $("#scanner-data").html("");
+					 $(".center").css("display", "block");
+			 });
+		}
+		console.log(text);
     QRScanner.hide();
     $("body").css("visibility", "visible");
   });
+}
+// gets data from firebase
+function dataCheck(qrId){
+	firebase.database().ref("test-hackers/registered-hackers/" + qrId ).once("value").then( function(snapshot){
+			render(snapshot.val());
+	});
+}
+// checks for requirements
+function logicCheck(data){
+	if(!data){
+		 return 0;
+	}else if(data.rsvp === false){
+		 return 1;
+	}else if(d data.got_shirt === true ){
+		 return 2;
+	}else if(data.rsvp === true && data.got_shirt === false){
+		registerPost(data._id);
+		 return 3;
+	}else return 4;
+}
+// interacts with div
+function render(data){
+	num = logicCheck(data);
+ var email = "<tr><td>email</td> <td>"+data.email + "</td></tr>";
+ var firstName = "<tr><td>first name</td> <td>"+data.first_name + "</td></tr>";
+ var lastName = "<tr><td>last name</td> <td>"+data.last_name + "</td></tr>";
+ var rsvp = "<tr><td>rsvp</td> <td>"+data.rsvp + "</td></tr>";
+ var gotTshirt = "<tr><td>got tshirt</td> <td>"+data.got_shirt + "</td></tr>";
+ var shirtSize = "<tr><td>shirt size</td> <td>"+ data.shirt_size + "</td></tr>";
+ var signedIn = "<tr><td>signed in</td> <td>"+data.signed_in + "</td></tr>";
+ var done = "<button>Done</button>";
 
+ if(num === 0){
+	 $("#scanner-data").css("background-color", "red");
+	 $("#scanner-data").html("<h1>Not Registered in DB</h1>" + done);
+ }else if(num == 1){
+	 var heading = "<h1>did not RSVP</h1>"
+	 var table = "<table>" + firstName + lastName + rsvp + shirtSize + "</table>";
+	 $("#scanner-data").css("background-color", "red");
+	 $("#scanner-data").html(heading + table + shirtSize + done);
+ }else if(num == 2){
+	 var heading = "<h1> Signed in and / or got  t-shirt</h1>";
+	 var table = "<table>" + firstName + lastName + rsvp + signedIn + gotTshirt + shirtSize +"</table>";
+	 $("#scanner-data").css("background-color", "red");
+	 $("#scanner-data").html(heading + table + done);
+ }else if(num == 3){
+	 var heading = "<h1>All good Tshirt: " + data.shirt_size + "</h1>";
+	 var table = "<table>" + firstName + lastName + rsvp + signedIn + gotTshirt + shirtSize + "</table>";
+	 firebase.database().ref("test-hackers/registered-hackers/" + data._id ).update({
+ 		signed_in: true,
+		got_shirt: true
+ 	});
+	 $("#scanner-data").css("background-color", "green");
+	 $("#scanner-data").html(heading + table + done);
+ }else if(num == 4){
+	 var heading = "<h1> Warning!!: something is fishy</h1>";
+	 var table = "<table>" + firstName + lastName + rsvp + signedIn + gotTshirt + shirtSize + "</table>";
+	 $("#scanner-data").css("background-color", "red");
+	 $("#scanner-data").html(heading + table + done);
+ }
+
+ $("#scanner-data button").click(function(){
+		 $("#scanner-data").html("");
+		 $(".center").css("display", "block");
+ });
 }
 
+function registerPost(id){
+	firebase.database().ref("test-hackers/registered-hackers/" + id ).update({
+		"signed_in": true
+	});
+}
