@@ -314,19 +314,24 @@ function onDeviceReady() {
 	    cameraPopoverHandle.setPosition(cameraPopoverOptions);
 	}
   $("#shirt").click(function(){
-			$(".center").css("display", "none");
+  			console.log("clicked shirt");
+  			$("#all-content").css('display', 'none');
 			scanIt(1);
   });
   $("#checkin").click(function(){
-			$(".center").css("display", "none");
+  			$("#all-content").css('display', 'none');
 			scanIt(2);
   });
 }
 
 function scanIt(use){
+	console.log("in scan it");
   QRScanner.show();
   $("body").css("visibility", "hidden");
+  $("body").css("background-color", "transparent");
+  console.log("after visibility");
   QRScanner.scan(function(err, text){
+  	console.log("in scan");
     if(err){
       switch(err){
         case 0:
@@ -348,23 +353,27 @@ function scanIt(use){
           alert("error code: " + err);
       }
     }
+    console.log("after scan");
 		if(use == 1){
 			dataCheck(text);
 		}else if(use == 2){
 			registerPost(text);
 			 $("#scanner-data").html("<h1> sent!! </h1> <button>Done</button>");
 			 $("#scanner-data button").click(function(){
-					 $("#scanner-data").html("");
-					 $(".center").css("display", "block");
+					$("#scanner-data").html("");
+  					$("#all-content").css('display', 'block');
 			 });
 		}
 		console.log(text);
     QRScanner.hide();
     $("body").css("visibility", "visible");
+    $("body").css("background-color", "white");
   });
+  console.log("leaving function");
 }
 // gets data from firebase
 function dataCheck(qrId){
+	console.log("in data check");
 	firebase.database().ref("test-hackers/registered-hackers/" + qrId ).once("value").then( function(snapshot){
 			render(snapshot.val());
 	});
@@ -424,8 +433,8 @@ function render(data){
  }
 
  $("#scanner-data button").click(function(){
-		 $("#scanner-data").html("");
-		 $(".center").css("display", "block");
+		$("#scanner-data").html("");
+  		$("#all-content").css('display', 'block');
  });
 }
 

@@ -54,38 +54,40 @@
         <title>HackPSU Organizer</title>
     </head>
     <body>
-        <div class="center">
-            <h1>Title</h1>
-            <textarea id="titleInput"></textarea>
-            <br />
-            <h2>Body</h2>
-            <textarea id="bodyInput"></textarea>
-            <br />
-            
-        </div>
-        <div class="center">
-            <input id="enableNotification" type="checkbox">&nbsp;Push Notification</input>
-            <input id="enableUpdate" type="checkbox">&nbsp;Live Update</input>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <div id="takePicture" class="button">Take Photo</div>
+        <div id="all-content">
+            <div class="center">
+                <h1>Title</h1>
+                <textarea id="titleInput"></textarea>
+                <br />
+                <h2>Body</h2>
+                <textarea id="bodyInput"></textarea>
+                <br />
+                
+            </div>
+            <div class="center">
+                <input id="enableNotification" type="checkbox">&nbsp;Push Notification</input>
+                <input id="enableUpdate" type="checkbox">&nbsp;Live Update</input>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div id="takePicture" class="button">Take Photo</div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div id="choosePicture" class="button">Choose Photo</div>
+                        </div>
                     </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div id="choosePicture" class="button">Choose Photo</div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div id="shirt" class="button">QR - Shirt (includes checkin)</div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div id="checkin" class="button">QR - Checkin</div>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <div id="shirt" class="button">QR - Shirt (includes checkin)</div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div id="checkin" class="button">QR - Checkin</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-12">
-                        <div id="send" class="button">Send</div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div id="send" class="button">Send</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -94,5 +96,4 @@
         </div>
 	<script type="text/javascript" src="cordova.js"></script>
    </body>
-    </body>
 </html>
