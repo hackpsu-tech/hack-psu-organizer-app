@@ -1,5 +1,6 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
+
 function onDeviceReady() {
 	var selectedImage = null;
 	var imageUrl = null;
@@ -14,6 +15,24 @@ function onDeviceReady() {
 	var sendPush = false;
 	var sendUpdate = false;
 	var uiResetLockCount = 0;
+	var goHomeOnBack = false;
+	document.addEventListener("backbutton", function() {
+		if (goHomeOnBack) {
+			QRScanner.cancelScan(function(status) {
+				console.log("cancel scan: " + status);
+			});
+			QRScanner.hide();
+			$("body").css("visibility", "visible");
+    		$("body").css("background-color", "white");
+    		$("#scanner-data").html("");
+    		$("#all-content").css('display', 'block');
+    		goHomeOnBack = false;
+    	}
+    	else {
+    		navigator.app.exitApp();
+    	}
+		console.log("back button pressed");
+	}, false);
 
 	$("#enableNotification").click(function() {
 		if( $(this).is(':checked') ) {
@@ -314,7 +333,6 @@ function onDeviceReady() {
 	    cameraPopoverHandle.setPosition(cameraPopoverOptions);
 	}
   $("#shirt").click(function(){
-  			console.log("clicked shirt");
   			$("#all-content").css('display', 'none');
 			scanIt(1);
   });
@@ -322,146 +340,148 @@ function onDeviceReady() {
   			$("#all-content").css('display', 'none');
 			scanIt(2);
   });
-}
 
-function scanIt(use){
-	console.log("in scan it");
-  QRScanner.show();
-  $("body").css("visibility", "hidden");
-  $("body").css("background-color", "transparent");
-  console.log("after visibility");
-  QRScanner.scan(function(err, text){
-  	console.log("in scan");
-    if(err){
-      switch(err){
-        case 0:
-          alert("An unexpected error!!");
-          break;
-        case 1:
-          alert("Camera access denied!!");
-          break;
-        case 2:
-          alert("Camera access is restricted");
-          break;
-        case 3:
-          alert("The back camera is unavailable.");
-          break;
-        case 4:
-          alert("The front camera is unavailable.");
-          break;
-        default:
-          alert("error code: " + err);
-      }
-    }
-    console.log("after scan");
-		if(use == 1){
-			dataCheck(text);
-		}else if(use == 2){
-			registerPost(text);
-			 $("#scanner-data").html("<h1> sent!! </h1> <button>Done</button>");
-			 $("#scanner-data button").click(function(){
-					$("#scanner-data").html("");
-  					$("#all-content").css('display', 'block');
-			 });
+	function scanIt(use){
+	  QRScanner.show();
+	  $("body").css("visibility", "hidden");
+	  $("body").css("background-color", "transparent");
+	  goHomeOnBack = true;
+	  QRScanner.scan(function(err, text){
+	    if(err){
+	      switch(err){
+	        case 0:
+	          alert("An unexpected error!!");
+	          break;
+	        case 1:
+	          alert("Camera access denied!!");
+	          break;
+	        case 2:
+	          alert("Camera access is restricted");
+	          break;
+	        case 3:
+	          alert("The back camera is unavailable.");
+	          break;
+	        case 4:
+	          alert("The front camera is unavailable.");
+	          break;
+	        default:
+	          console.log("error code: " + err);
+	      }
+	    }
+	    else {
+			if(use == 1){
+				dataCheck(text);
+			}else if(use == 2){
+				registerPost(text);
+				 $("#scanner-data").html("<h1> sent!! </h1> <button>Done</button>");
+				 $("#scanner-data button").click(function(){
+						$("#scanner-data").html("");
+	  					$("#all-content").css('display', 'block');
+	  					goHomeOnBack = false;
+				 });
+			}
+			console.log(text);
 		}
-		console.log(text);
-    QRScanner.hide();
-    $("body").css("visibility", "visible");
-    $("body").css("background-color", "white");
-  });
-  console.log("leaving function");
-}
-// gets data from firebase
-function dataCheck(qrId){
-	console.log("in data check");
-	firebase.database().ref("test-hackers/registered-hackers/" + qrId ).once("value").then( function(snapshot){
-			render(snapshot.val());
-	});
-}
-// checks for requirements
-function logicCheck(data){
-	if(!data){
-		 return 0;
-	}else if(data.rsvp === false){
-		 return 1;
-	}else if(data.got_shirt === true ){
-		 return 2;
-	}else if(data.rsvp === true && data.got_shirt === false){
-		registerPost(data._id);
-		 return 3;
-	}else return 4;
-}
-// interacts with div
-function render(data){
-	num = logicCheck(data);
- var email = "<tr><td>email</td> <td>"+data.email + "</td></tr>";
- var firstName = "<tr><td>first name</td> <td>"+data.first_name + "</td></tr>";
- var lastName = "<tr><td>last name</td> <td>"+data.last_name + "</td></tr>";
- var rsvp = "<tr><td>rsvp</td> <td>"+data.rsvp + "</td></tr>";
- var gotTshirt = "<tr><td>got tshirt</td> <td>"+data.got_shirt + "</td></tr>";
- var shirtSize = "<tr><td>shirt size</td> <td>"+ data.shirt_size + "</td></tr>";
- var signedIn = "<tr><td>signed in</td> <td>"+data.signed_in + "</td></tr>";
- var done = "<button>Done</button>";
-
- if(num === 0){
-	 $("#scanner-data").css("background-color", "red");
-	 $("#scanner-data").html("<h1>Not Registered in DB</h1>" + done);
- }else if(num == 1){
-	 var heading = "<h1>did not RSVP</h1>"
-	 var table = "<table>" + firstName + lastName + rsvp + shirtSize + "</table>";
-	 $("#scanner-data").css("background-color", "red");
-	 $("#scanner-data").html(heading + table + shirtSize + done);
- }else if(num == 2){
-	 var heading = "<h1> Signed in and / or got  t-shirt</h1>";
-	 var table = "<table>" + firstName + lastName + rsvp + signedIn + gotTshirt + shirtSize +"</table>";
-	 $("#scanner-data").css("background-color", "red");
-	 $("#scanner-data").html(heading + table + done);
- }else if(num == 3){
-	 var heading = "<h1>All good Tshirt: " + data.shirt_size + "</h1>";
-	 var table = "<table>" + firstName + lastName + rsvp + signedIn + gotTshirt + shirtSize + "</table>";
-	 firebase.database().ref("test-hackers/registered-hackers/" + data._id ).update({
- 		signed_in: true,
-		got_shirt: true
- 	});
-	 $("#scanner-data").css("background-color", "green");
-	 $("#scanner-data").html(heading + table + done);
- }else if(num == 4){
-	 var heading = "<h1> Warning!!: something is fishy</h1>";
-	 var table = "<table>" + firstName + lastName + rsvp + signedIn + gotTshirt + shirtSize + "</table>";
-	 $("#scanner-data").css("background-color", "red");
-	 $("#scanner-data").html(heading + table + done);
- }
-
- $("#scanner-data button").click(function(){
-		$("#scanner-data").html("");
-  		$("#all-content").css('display', 'block');
- });
-}
-
-function registerPost(id){
-	firebase.database().ref("test-hackers/registered-hackers/" + id ).update({
-		"signed_in": true
-	});
-}
-
-function clearActiveButton(obj) {
-	if (obj) {
-		obj.removeClass("active-button");
-		obj.addClass("button");
+	    QRScanner.hide();
+	    $("body").css("visibility", "visible");
+	    $("body").css("background-color", "white");
+	  });
 	}
-	else {
-		$(".active-button").each(function() {
-			$(this).removeClass("active-button");
-			$(this).addClass("button");
+	// gets data from firebase
+	function dataCheck(qrId){
+		firebase.database().ref("test-hackers/registered-hackers/" + qrId ).once("value").then( function(snapshot){
+				render(snapshot.val());
 		});
 	}
+	// checks for requirements
+	function logicCheck(data){
+		if(!data){
+			 return 0;
+		}else if(data.rsvp === false){
+			 return 1;
+		}else if(data.got_shirt === true ){
+			 return 2;
+		}else if(data.rsvp === true && data.got_shirt === false){
+			registerPost(data._id);
+			 return 3;
+		}else return 4;
+	}
+	// interacts with div
+	function render(data){
+		num = logicCheck(data);
+	 var email = "<tr><td>email</td> <td>"+data.email + "</td></tr>";
+	 var firstName = "<tr><td>first name</td> <td>"+data.first_name + "</td></tr>";
+	 var lastName = "<tr><td>last name</td> <td>"+data.last_name + "</td></tr>";
+	 var rsvp = "<tr><td>rsvp</td> <td>"+data.rsvp + "</td></tr>";
+	 var gotTshirt = "<tr><td>got tshirt</td> <td>"+data.got_shirt + "</td></tr>";
+	 var shirtSize = "<tr><td>shirt size</td> <td>"+ data.shirt_size + "</td></tr>";
+	 var signedIn = "<tr><td>signed in</td> <td>"+data.signed_in + "</td></tr>";
+	 var done = "<button>Done</button>";
+
+	 if(num === 0){
+		 $("#scanner-data").css("background-color", "red");
+		 $("#scanner-data").html("<h1>Not Registered in DB</h1>" + done);
+	 }else if(num == 1){
+		 var heading = "<h1>did not RSVP</h1>"
+		 var table = "<table>" + firstName + lastName + rsvp + shirtSize + "</table>";
+		 $("#scanner-data").css("background-color", "red");
+		 $("#scanner-data").html(heading + table + shirtSize + done);
+	 }else if(num == 2){
+		 var heading = "<h1> Signed in and / or got  t-shirt</h1>";
+		 var table = "<table>" + firstName + lastName + rsvp + signedIn + gotTshirt + shirtSize +"</table>";
+		 $("#scanner-data").css("background-color", "red");
+		 $("#scanner-data").html(heading + table + done);
+	 }else if(num == 3){
+		 var heading = "<h1>All good Tshirt: " + data.shirt_size + "</h1>";
+		 var table = "<table>" + firstName + lastName + rsvp + signedIn + gotTshirt + shirtSize + "</table>";
+		 firebase.database().ref("test-hackers/registered-hackers/" + data._id ).update({
+	 		signed_in: true,
+			got_shirt: true
+	 	});
+		 $("#scanner-data").css("background-color", "green");
+		 $("#scanner-data").html(heading + table + done);
+	 }else if(num == 4){
+		 var heading = "<h1> Warning!!: something is fishy</h1>";
+		 var table = "<table>" + firstName + lastName + rsvp + signedIn + gotTshirt + shirtSize + "</table>";
+		 $("#scanner-data").css("background-color", "red");
+		 $("#scanner-data").html(heading + table + done);
+	 }
+
+	 $("#scanner-data button").click(function(){
+			$("#scanner-data").html("");
+	  		$("#all-content").css('display', 'block');
+	  		goHomeOnBack = false;
+	 });
+	}
+
+	function registerPost(id){
+		firebase.database().ref("test-hackers/registered-hackers/" + id ).update({
+			"signed_in": true
+		});
+	}
+
+	function clearActiveButton(obj) {
+		if (obj) {
+			obj.removeClass("active-button");
+			obj.addClass("button");
+		}
+		else {
+			$(".active-button").each(function() {
+				$(this).removeClass("active-button");
+				$(this).addClass("button");
+			});
+		}
+	}
+
+
+
+	function setActiveButton(obj) {
+		obj.removeClass("button");
+		obj.addClass("active-button");
+	}
+
+
 }
 
-
-
-function setActiveButton(obj) {
-	obj.removeClass("button");
-	obj.addClass("active-button");
-}
-
+//end of device ready
 
