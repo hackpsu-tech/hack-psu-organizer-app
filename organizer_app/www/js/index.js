@@ -11,70 +11,145 @@ function onDeviceReady() {
 		storageBucket: "notifications-b01a3.appspot.com",
 		messagingSenderId: "385399873291"
 	};
+	var sendPush = false;
+	var sendUpdate = false;
+	var uiResetLockCount = 0;
+
+	$("#enableNotification").click(function() {
+		if( $(this).is(':checked') ) {
+			sendPush = true;
+		}
+		else {
+			sendPush = false;
+		}
+	});
+
+	$("#enableUpdate").click(function() {
+		if( $(this).is(':checked') ) {
+			sendUpdate = true;
+		}
+		else {
+			sendUpdate = false;
+		}
+	});
+
 	firebase.initializeApp(config);
-	$("#pushNotification").click(function(event) {
+	$("#send").click(function(event) {
 		event.preventDefault();
 		ids = {
 			"browser": [],
 			"Android": [],
             "iOS": []
 		}
-
-		if (firebase) {
-			imageUrl = null;
-			if (selectedImage != null) {
-
-				var storageRef = firebase.storage().ref();
-				var uuid = guid();
-				var newUpload = storageRef.child($("#titleInput").val() + '-' + uuid + '.jpg');
-
-				selectedImage = selectedImage.replace(/\s/g, '');
-				var uploadTask = newUpload.putString(selectedImage, 'base64', {contentType:'image/jpg'});
-				uploadTask.on('state_changed', function(snapshot) {
-					console.log("36");
-				}, function(error) {
-					console.log("file could not be uploaded");
-					alert("Image Upload Failed");
-				}, function() {
-					console.log("file upload success");
-					imageUrl = uploadTask.snapshot.downloadURL;
-					pushNotification();
-					console.log("download url: " + uploadTask.snapshot.downloadURL);
-				});
+		if (sendUpdate || sendPush) {
+			if (sendUpdate && selectedImage == null) {
+				alert("You are required to have an image with a live update. Nothing sent");
 			}
 			else {
-				alert("notification did not have an image");
+				navigator.notification.confirm(
+					getConfirmMessage(),
+					function(confirmIndex) {
+						if (confirmIndex == 1) {
+							if (firebase) {
+								imageUrl = null;
+
+								if (sendUpdate) {
+									if (selectedImage != null) {
+
+										var storageRef = firebase.storage().ref();
+										var uuid = guid();
+										var newUpload = storageRef.child($("#titleInput").val() + '-' + uuid + '.jpg');
+
+										selectedImage = selectedImage.replace(/\s/g, '');
+										var uploadTask = newUpload.putString(selectedImage, 'base64', {contentType:'image/jpg'});
+										uploadTask.on('state_changed', function(snapshot) {
+										}, function(error) {
+											console.log("Image could not be uploaded to firebase");
+											alert("Image Upload Failed");
+										}, function() {
+											imageUrl = uploadTask.snapshot.downloadURL;
+
+											var updates = firebase.database().ref('updates');
+
+											var newUpdate = updates.push();
+											newUpdate.set({
+												"date": Date.now(),
+												"title": $("#titleInput").val(),
+												"body": $("#bodyInput").val(),
+												"url": imageUrl
+											});
+
+											if (sendPush) {
+												pushNotification();
+												alert("Push notification and update sent");
+											}
+											else {
+												alert("Update sent");
+												resetNotificationUI(uiResetLockCount);
+											}
+										});
+									}
+									else {
+									}
+								}
+							}
+
+							if (sendPush && !sendUpdate) {
+								pushNotification();
+								alert("Push notification sent");
+							}
+						}
+					},
+					'Confirm Send',           // title
+	    		[	'Confirm','Cancel']
+	    		);
 			}
-
-
 		}
-		selectedImage = null;
+		else {
+			alert("Please select options for notification or update");
+		}
 	});
 
+	function getConfirmMessage() {
+		var message = "";
+		if (sendPush) {
+			message += "Sending push notification...\n";
+		}
+		if (sendUpdate) {
+			message += "Send live update...\n";
+		}
+		message += "Title: " + $("#titleInput").val() + "\n";
+		message += "Body: " + $("#bodyInput").val();
+
+		return message;
+	}
+
+	function resetNotificationUI(resetLockCount) {
+		if (resetLockCount == 0) {
+			clearActiveButton();
+			$("#titleInput").val("");
+			$("#bodyInput").val("");
+			if (sendUpdate) {
+				$("#enableUpdate").click();
+			}
+			if (sendPush) {
+				$("#enableNotification").click();
+			}
+			selectedImage = null;
+		}
+	}
+
 	function pushNotification() {
-		var updates = firebase.database().ref('updates');
-
-		var newUpdate = updates.push();
-		newUpdate.set({
-			"date": Date.now(),
-			"title": $("#titleInput").val(),
-			"body": $("#bodyInput").val(),
-			"url": imageUrl
-		});
-
-
+		uiResetLockCount = 2;
 		$.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"browser"}', function( data ) {
-			 console.log(data);
 			 for (var i = 0; i < data.length; i++) {
 				ids.browser.push(data[i]._id);
-				console.log("BROWSER PUSHING: " + data[i]._id);
 			 }
 			 var notification = initNotification();
 			 notification.registration_ids = ids.browser;
 			 notification.notification.click_action = "https://notifications-b01a3.firebaseapp.com/";
 			 notification.notification.icon = "https://notifications-b01a3.firebaseapp.com/assets/images/hackpsulogo.png";
 			 if (notification.registration_ids.length > 0) {
-				console.log("pushing browser notifications");
 				$.ajax({
 					url: 'https://fcm.googleapis.com/fcm/send',
 					type: "POST",
@@ -85,9 +160,13 @@ function onDeviceReady() {
 					},
 					data: JSON.stringify(notification),
 					success: function () {
-						console.log("Browser Success");
+						uiResetLockCount--;
+						resetNotificationUI(uiResetLockCount);
 					},
 					error: function(error) {
+						uiResetLockCount--;
+						alert("Error getting registered id's for desktop: " + error);
+						resetNotificationUI(uiResetLockCount);
 						console.log(error);
 					}
 				});
@@ -95,16 +174,13 @@ function onDeviceReady() {
 
 		});
 		$.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"Android"}', function( data ) {
-			console.log(data);
 			for (var i = 0; i < data.length; i++) {
 			 	ids.Android.push(data[i]._id);
-				console.log("MOBILE PUSHING: " + data[i]._id);
 			}
 			var notification = initNotification();
 			notification.registration_ids = ids.Android;
 			notification.notification.click_action = "FCM_PLUGIN_ACTIVITY";
 			if (notification.registration_ids.length > 0) {
-				console.log("pushing mobile notifications");
 				$.ajax({
 					url: 'https://fcm.googleapis.com/fcm/send',
 					type: "POST",
@@ -115,15 +191,19 @@ function onDeviceReady() {
 					},
 					data: JSON.stringify(notification),
 					success: function () {
-						console.log("Mobile Success");
+						uiResetLockCount--;
+						resetNotificationUI(uiResetLockCount);
 					},
 					error: function(error) {
-						console.log(error);
+						uiResetLockCount--;
+						resetNotificationUI(uiResetLockCount);
+						alert("Error getting registered id's for android: " + error);
 					}
 				});
 			}
 		});
-    
+
+    /*
 	    $.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"iOS"}', function( data ) {
 			console.log(data);
 			for (var i = 0; i < data.length; i++) {
@@ -145,19 +225,7 @@ function onDeviceReady() {
 				    "body": $("#bodyInput").val()
 				  },
 				  "registration_ids": ids.iOS
-				/*
-                "notification":{
-                    "title": $("#titleInput").val(),
-                    "body": $("#bodyInput").val(),
-                    "sound": "default",
-                    "click_action": "FCM_PLUGIN_ACTIVITY",
-                    "icon": null
-                  },
-                  "data":{
-                    "title": $("#titleInput").val(),
-				    "body": $("#bodyInput").val()
-                  },
-                  "registration_ids": ids.iOS */
+				
             };
 			if (notification.registration_ids.length > 0) {
 				console.log("pushing mobile notifications");
@@ -178,7 +246,7 @@ function onDeviceReady() {
 					}
 				});
 			}
-		});
+		});*/
 	}
 
 	function initNotification() {
@@ -202,11 +270,11 @@ function onDeviceReady() {
 	$("#takePicture").click(function() {
 		navigator.camera.getPicture(function(imageURI) {
 			selectedImage = imageURI;
-			console.log("imageURI: " + imageURI);
-			console.log("camera success");
+			clearActiveButton($("#choosePicture"));
+			setActiveButton($("#takePicture"));
 		}, function(message) {
-			console.log("camera failure: " + message);
-			alert("Image Selection Failed");
+			console.log("Taking picture failed: " + message);
+			alert("Taking picture Failed");
 		}, {
 			destinationType: Camera.DestinationType.DATA_URL,
 		    sourceType: Camera.PictureSourceType.CAMERA,
@@ -217,10 +285,10 @@ function onDeviceReady() {
 	$("#choosePicture").click(function() {
 		navigator.camera.getPicture(function(imageURI) {
 			selectedImage = imageURI;
-			console.log("imageURI: " + imageURI);
-			console.log("camera success");
+			clearActiveButton($("#takePicture"));
+			setActiveButton($("#choosePicture"));
 		}, function(message) {
-			console.log("camera failure: " + message);
+			console.log("Image selection failed: " + message);
 			alert("Image Selection Failed");
 		}, {
 		    destinationType: Camera.DestinationType.DATA_URL,
@@ -366,3 +434,25 @@ function registerPost(id){
 		"signed_in": true
 	});
 }
+
+function clearActiveButton(obj) {
+	if (obj) {
+		obj.removeClass("active-button");
+		obj.addClass("button");
+	}
+	else {
+		$(".active-button").each(function() {
+			$(this).removeClass("active-button");
+			$(this).addClass("button");
+		});
+	}
+}
+
+
+
+function setActiveButton(obj) {
+	obj.removeClass("button");
+	obj.addClass("active-button");
+}
+
+
