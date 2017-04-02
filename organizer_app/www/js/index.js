@@ -307,7 +307,7 @@ function logicCheck(data){
 		 return 0;
 	}else if(data.rsvp === false){
 		 return 1;
-	}else if(d data.got_shirt === true ){
+	}else if(data.got_shirt === true ){
 		 return 2;
 	}else if(data.rsvp === true && data.got_shirt === false){
 		registerPost(data._id);
