@@ -83,6 +83,11 @@ function onDeviceReady() {
 							sendUpdate = false;
 						}
 					});
+
+					$("#reset").click(function() {
+						resetNotificationUI(uiResetLockCount);
+					});
+
 					$("#send").click(function(event) {
 						if (!user) {return;}
 						event.preventDefault();
