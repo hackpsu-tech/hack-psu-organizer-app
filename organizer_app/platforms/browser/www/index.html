@@ -28,48 +28,77 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-	<meta http-equiv="Content-Security-Policy"
+	   <meta http-equiv="Content-Security-Policy"
 		content="default-src * 'self' 'unsafe-inline' 'unsafe-eval'
 			https://api.mlab.com
 			https://fcm.googleapis.com/fcm/send
 			*.gstatic.com
-			*.firebaseio.com;
+			*.firebaseio.com
+			blob:*
+            gap://*;
 		    style-src 'self' 'unsafe-inline'
-			*.googleapis.com
-			;
-		    img-src *;">
+			*.googleapis.com;
+		    img-src *;
+            worker-src
+            http://*
+            https://*;">
 
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-database.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-storage.js"></script>
         <script src="js/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+	    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase-auth.js"></script>"
+        <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-storage.js"></script>
         <script src="js/index.js"></script>
-        <title>HackPSU Organizer</title>
+	<title>HackPSU Organizer</title>
     </head>
     <body>
-        <div class="center">
-            <h1>Title</h1>
-            <textarea id="titleInput"></textarea>
-            <br />
-            <h2>Body</h2>
-            <textarea id="bodyInput"></textarea>
-            <br />
-            <input id="pushNotification" type="button" value="Push Notification" />
-            <input id="takePicture" type="button" value="Take Photo" />
-            <input id="choosePicture" type="button" value="Choose Photo" />
-        </div>
-        <div class="center">
-          <button id="shirt">shirt</button>
-          <button id="checkin">checkin</button>
+        <div id="all-content">
+            <div class="center">
+                <h1>Title</h1>
+                <textarea id="titleInput"></textarea>
+                <br />
+                <h2>Body</h2>
+                <textarea id="bodyInput"></textarea>
+                <br />
+                
+            </div>
+            <div class="center">
+                <input id="enableNotification" type="checkbox">&nbsp;Push Notification</input>
+                <input id="enableUpdate" type="checkbox">&nbsp;Live Update</input>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div id="takePicture" class="button">Take Photo</div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div id="choosePicture" class="button">Choose Photo</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div id="shirt" class="button">QR - Shirt (includes checkin)</div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div id="checkin" class="button">QR - Checkin</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <div id="send" class="button">Send</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="scanner-data">
         </div>
 	<script type="text/javascript" src="cordova.js"></script>
    </body>
-    </body>
 </html>

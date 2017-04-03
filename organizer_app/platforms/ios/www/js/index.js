@@ -1,10 +1,5 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
-
-function onDeviceReady() {
-	var selectedImage = null;
-	var imageUrl = null;
-	var ids = null;
 	var config = {
 		apiKey: "AIzaSyBFluYW_DWuVeaEzCMNFzAaHlVQnK8Qzk8",
 		authDomain: "notifications-b01a3.firebaseapp.com",
@@ -12,6 +7,18 @@ function onDeviceReady() {
 		storageBucket: "notifications-b01a3.appspot.com",
 		messagingSenderId: "385399873291"
 	};
+	firebase.initializeApp(config);
+
+function onDeviceReady() {
+
+	var provider = new firebase.auth.GoogleAuthProvider();
+	firebase.auth().signInWithPopup(provider).then(function(result) {
+		console.log("Logged in!");
+		console.log(result);
+	var selectedImage = null;
+	var imageUrl = null;
+	var ids = null;
+
 	QRScanner.prepare(function (err, status) {
 		console.log(err);
 		console.log(status);
@@ -55,8 +62,6 @@ function onDeviceReady() {
 			sendUpdate = false;
 		}
 	});
-
-	firebase.initializeApp(config);
 	$("#send").click(function(event) {
 		event.preventDefault();
 		ids = {
@@ -483,6 +488,10 @@ function onDeviceReady() {
 		obj.removeClass("button");
 		obj.addClass("active-button");
 	}
+	}).catch(function(error) {
+		console.error(error);
+	}) 
+	
 
 
 }

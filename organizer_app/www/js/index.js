@@ -1,20 +1,44 @@
 document.addEventListener("deviceready", onDeviceReady, false);
-
+// var admin = require('firebase-admin');
+// var serviceAccount = require('./ServiceAccountKey.json');
+// admin.initializeApp({
+//   credential: admin.credential.cert({
+// 	  "project_id": "notifications-b01a3",
+//   	"private_key_id": "e160e66a8dde011c2e0e407ba66fb5140514d7da",
+// 	"private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDQVVTRgivl9ms/\nFJmkiENTOqhK4bjt3OBaLXeGoGkQxFPiMs3d8jYguZJ7UsxpzFv0tmkRdoDC5Zo3\nxKNiuDXIVVD51vdy1B5+lT61C7AtzOVP71cAawdxeeiZs1Fckvw4euwq5oO78KQ1\nul4GWdMurIttXlITw23evwJL4/C0aIvkT2MbVY1fcH9v10pM23Jb79uob1tg5A2t\n6UdpRCIr9qjsvx8OE5buOlfAVHBL7/BfPea90asycNDdRCYH10jogDu176RH4eZY\nTr94atCjevcoXWTSlxkyfBlffn4Irs6Ve8ewOuaoRcUSoEkgNbORfGm9ZDcNlbL4\nQtKelmi9AgMBAAECggEAT1NOen+wK13KtDgp0GY6DGTXU7vi6F8j5fJOAqrtln7K\n2eQyUwI47fj6944tW1N+6AzUsNuIZ615LSbod1xgzij+LkNV8Rkni1dUiycqLCZK\nYkdlvzkBmomqsWt/3VnyQ6c6aZNgMZ2NSQ/vYUeui6UTac9yPSg6m4frXe4q5uX/\ntE8SNZ/L9/6WXnr9Fx60KywONtcPeDeIeG+H7u/4gq8Z8sqgQHdu+cssEO8HeNYu\n3hBOIjXVMMCM2ehzbzDRnv9E1c7V1S8zuTo8GvbqpMdsM9eVxIBspZOYayp3sQUH\nddDHfHtDb3LYsKUyJ2NaJ6DCm1ZvrY9sm+92yHb3AQKBgQD2ISYLTbfG5sp/IMlP\nT/bCX9mFn5uGjOjS4FM6PxezT3OcWUqdEPyGxQ/KrT91bgUATJkpRUeSuyfDsvsd\nwUvnvikoFlx9WsqXqT6SWCD4wvDLLnACJX41K/Mm7N+DoJT6N7OgFXG2nmxip2n6\nn8/wdj4h0Pr/cWZ4bPf9mRHwoQKBgQDYsCdzNTCawAYkx0ZTmllBjze+yffwfk84\n6m8gHkt2KLLEVYbRxV36a3+jvt2o8NvxPWP2q0e6DsqFw4ofExAUfhBfy3H1QKDz\nnyRPn+s9bC7REdUociXTXXdXxvCcB738t1GhfNfBkEdRMGjQKvI1+aq3AW5WFDj5\nDtn04ugWnQKBgQDbjwp+/t83wV1WNoseAzkef55tQsncJwryQkY8KVgdDn0VNdoH\nbsW1+0hxBkcbm/8+GxZt6G1GiUmZm6nDC1GI8uuH5RqwgDNFQyacKZ2QC2X9+fjV\nEVkaWZBYYumoY7FB3DqSTU7ZF02cW7eAaNt3qCMYy3F8OU6tkpdOVCPawQKBgQCP\ncHR88C3fktO+Tue/+gGxw1OciWgGnCZnP9EWCtfbPO+xxgf8HtGqLrUMuRFUfzSp\nSgE9TX6qrJXl3F43WdAgMJ84Op2SQxkIjEVmLC91toJ7RXm8T2u4sjuJMJkgQIPE\nobl41AKjEJYVKZ2Ih5VUo5QdluXqN3LLc8hWMkp+hQKBgQCJLJ07ocp9pMOrPPCd\nJhi4NgE+bR1lgVVQwfTqS6/VAw9apJUFRCpp78Ojw7YpW8YVLPupic0rQrBD6kVP\n1uzFtvFJE/EBVNtOqk9LuqV//OXbOgCkKegOnO0C03K+68IZCDspElUWeBKxyugL\nOIU56LZ15gzecPtwt17xLNUuhA==\n-----END PRIVATE KEY-----\n",
+//  	"client_email": "firebase-adminsdk-gj6ei@notifications-b01a3.iam.gserviceaccount.com",
+//   	"client_id": "113373878975040490869",
+//   	"auth_uri": "https://accounts.google.com/o/oauth2/auth",
+//   	"token_uri": "https://accounts.google.com/o/oauth2/token",
+//   	"auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+//   	"client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-gj6ei%40notifications-b01a3.iam.gserviceaccount.com"
+//   	}),
+//   databaseURL: "https://notifications-b01a3.firebaseio.com"
+// });
+var config = {
+    apiKey: "AIzaSyBFluYW_DWuVeaEzCMNFzAaHlVQnK8Qzk8",
+    authDomain: "notifications-b01a3.firebaseapp.com",
+    databaseURL: "https://notifications-b01a3.firebaseio.com",
+    projectId: "notifications-b01a3",
+    storageBucket: "notifications-b01a3.appspot.com",
+    messagingSenderId: "385399873291"
+  };
+  firebase.initializeApp(config);
 
 function onDeviceReady() {
 
-	var provider = new firebase.auth.GoogleAuthProvider();
-	firebase.auth().signInWithPopup(provider).then(function(result) {
-var selectedImage = null;
+	// var provider = new firebase.auth.GoogleAuthProvider();
+	firebase.auth().signInWithEmailAndPassword("hackpsudev@gmail.com", "hackpsudev2017").catch(function(error) {
+		console.error(error);
+	})
+	firebase.auth().onAuthStateChanged(function(user) {
+  		if (user) {
+			  console.log(user);
+			  var db = firebase.database();
+	var selectedImage = null;
 	var imageUrl = null;
 	var ids = null;
-	var config = {
-		apiKey: "AIzaSyBFluYW_DWuVeaEzCMNFzAaHlVQnK8Qzk8",
-		authDomain: "notifications-b01a3.firebaseapp.com",
-		databaseURL: "https://notifications-b01a3.firebaseio.com",
-		storageBucket: "notifications-b01a3.appspot.com",
-		messagingSenderId: "385399873291"
-	};
+
 	QRScanner.prepare(function (err, status) {
 		console.log(err);
 		console.log(status);
@@ -58,8 +82,6 @@ var selectedImage = null;
 			sendUpdate = false;
 		}
 	});
-
-	firebase.initializeApp(config);
 	$("#send").click(function(event) {
 		event.preventDefault();
 		ids = {
@@ -76,7 +98,7 @@ var selectedImage = null;
 					getConfirmMessage(),
 					function(confirmIndex) {
 						if (confirmIndex == 1) {
-							if (firebase) {
+							if (db && firebase) {
 								imageUrl = null;
 
 								if (sendUpdate) {
@@ -95,7 +117,7 @@ var selectedImage = null;
 										}, function() {
 											imageUrl = uploadTask.snapshot.downloadURL;
 
-											var updates = firebase.database().ref('updates');
+											var updates = db.ref('updates');
 
 											var newUpdate = updates.push();
 											newUpdate.set({
@@ -396,7 +418,7 @@ var selectedImage = null;
 	}
 	// gets data from firebase
 	function dataCheck(qrId){
-		firebase.database().ref("test-hackers/registered-hackers/" + qrId ).once("value").then( function(snapshot){
+		db.ref("test-hackers/registered-hackers/" + qrId ).once("value").then( function(snapshot){
 				render(snapshot.val());
 		});
 	}
@@ -441,7 +463,7 @@ var selectedImage = null;
 	 }else if(num == 3){
 		 var heading = "<h1>All good Tshirt: " + data.shirt_size + "</h1>";
 		 var table = "<table>" + firstName + lastName + rsvp + signedIn + gotTshirt + shirtSize + "</table>";
-		 firebase.database().ref("test-hackers/registered-hackers/" + data._id ).update({
+		 db.ref("test-hackers/registered-hackers/" + data._id ).update({
 	 		signed_in: true,
 			got_shirt: true
 	 	});
@@ -462,7 +484,7 @@ var selectedImage = null;
 	}
 
 	function registerPost(id){
-		firebase.database().ref("test-hackers/registered-hackers/" + id ).update({
+		db.ref("test-hackers/registered-hackers/" + id ).update({
 			"signed_in": true
 		});
 	}
@@ -486,9 +508,19 @@ var selectedImage = null;
 		obj.removeClass("button");
 		obj.addClass("active-button");
 	}
-	}).catch(function(error) {
-		console.error(error);
-	}) 
+		  }
+		  else {
+			console.log("signed out");
+		  }
+	});
+	 //firebase.auth().signInWithPopup(provider).then(function(result) {
+		// console.log("Logged in!");
+		// console.log(result);
+
+    
+	// }).catch(function(error) {
+	// 	console.error(error);
+	// }) 
 	
 
 

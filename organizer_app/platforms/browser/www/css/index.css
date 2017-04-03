@@ -15,8 +15,16 @@
    padding: 0px;
 }
 
+body {
+  text-align: :center;
+}
+
 .center {
    text-align: center;
+}
+
+.hide-for-qr {
+  display: none;
 }
 
 .left {
@@ -28,12 +36,31 @@
 }
 
 #scanner-data{
-  margin-left:400px;
-  max-width:300px;
-  min-height:150px;
   background-color:#bb6bdb;
 }
 
 tr, td {
     border: 1px solid black;
+}
+
+.button {
+  background: #ffc969;
+  padding:10px 10px;
+  margin: 5%;
+  margin-bottom: 0px;
+  color: black;
+  font-weight: 600;
+  font-size: large;
+  cursor: pointer;
+} 
+
+.active-button {
+  background: #aad4f2;
+  padding:10px 10px;
+  margin: 5%;
+  margin-bottom: 0px;
+  color: black;
+  font-weight: 600;
+  font-size: large;
+  cursor: pointer;
 }
