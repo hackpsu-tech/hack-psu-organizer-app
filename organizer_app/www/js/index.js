@@ -35,7 +35,6 @@ function onDeviceReady() {
 	firebase.auth().onAuthStateChanged(function(user) {
   		if (user && firstSignIn) {
   			firstSignIn = false;
-			  console.log(user);
 			  var db = firebase.database();
 					var selectedImage = null;
 					var imageUrl = null;
@@ -375,9 +374,10 @@ function onDeviceReady() {
 				  });
 
 					function scanIt(use){
+					  QRScanner.show();
+
 					  $("body").css("visibility", "hidden");
 					  $("body").css("background-color", "transparent");
-					  QRScanner.show();
 					  goHomeOnBack = true;
 					  QRScanner.scan(function(err, text){
 					    if(err){
@@ -418,7 +418,9 @@ function onDeviceReady() {
 					    QRScanner.hide();
 					    $("body").css("visibility", "visible");
 					    $("body").css("background-color", "white");
-						$("#all-content").css('display', 'block');
+					    if (device.platform != "Android") {
+							$("#all-content").css('display', 'block');
+						}
 					  });
 					}
 					// gets data from firebase
