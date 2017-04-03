@@ -326,7 +326,8 @@ function onDeviceReady() {
 		}, {
 			destinationType: Camera.DestinationType.DATA_URL,
 		    sourceType: Camera.PictureSourceType.CAMERA,
-		    popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY)
+		    popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY),
+			correctOrientation: true
 		});
 	});
 
@@ -371,9 +372,9 @@ function onDeviceReady() {
   });
 
 	function scanIt(use){
-	  QRScanner.show();
 	  $("body").css("visibility", "hidden");
 	  $("body").css("background-color", "transparent");
+	  QRScanner.show();
 	  goHomeOnBack = true;
 	  QRScanner.scan(function(err, text){
 	    if(err){
@@ -414,12 +415,15 @@ function onDeviceReady() {
 	    QRScanner.hide();
 	    $("body").css("visibility", "visible");
 	    $("body").css("background-color", "white");
+		$("#all-content").css('display', 'block');
 	  });
 	}
 	// gets data from firebase
 	function dataCheck(qrId){
-		db.ref("test-hackers/registered-hackers/" + qrId ).once("value").then( function(snapshot){
+		db.ref("/registered-hackers/" + qrId ).once("value").then(function(snapshot){
+			if (snapshot != null) {
 				render(snapshot.val());
+			}
 		});
 	}
 	// checks for requirements
@@ -463,7 +467,7 @@ function onDeviceReady() {
 	 }else if(num == 3){
 		 var heading = "<h1>All good Tshirt: " + data.shirt_size + "</h1>";
 		 var table = "<table>" + firstName + lastName + rsvp + signedIn + gotTshirt + shirtSize + "</table>";
-		 db.ref("test-hackers/registered-hackers/" + data._id ).update({
+		 db.ref("/registered-hackers/" + data._id ).update({
 	 		signed_in: true,
 			got_shirt: true
 	 	});
@@ -484,7 +488,7 @@ function onDeviceReady() {
 	}
 
 	function registerPost(id){
-		db.ref("test-hackers/registered-hackers/" + id ).update({
+		db.ref("/registered-hackers/" + id ).update({
 			"signed_in": true
 		});
 	}
