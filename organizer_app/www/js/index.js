@@ -329,8 +329,8 @@ function onDeviceReady() {
 						}, {
 							destinationType: Camera.DestinationType.DATA_URL,
 						    sourceType: Camera.PictureSourceType.CAMERA,
-						    popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY)
-							//correctOrientation: true
+						    popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY),
+							correctOrientation: true
 						});
 					});
 
