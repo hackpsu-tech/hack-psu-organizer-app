@@ -2,7 +2,10 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 
 function onDeviceReady() {
-	var selectedImage = null;
+
+	var provider = new firebase.auth.GoogleAuthProvider();
+	firebase.auth().signInWithPopup(provider).then(function(result) {
+var selectedImage = null;
 	var imageUrl = null;
 	var ids = null;
 	var config = {
@@ -483,6 +486,10 @@ function onDeviceReady() {
 		obj.removeClass("button");
 		obj.addClass("active-button");
 	}
+	}).catch(function(error) {
+		console.error(error);
+	}) 
+	
 
 
 }
