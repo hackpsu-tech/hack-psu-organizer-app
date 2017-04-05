@@ -53,10 +53,7 @@ function onDeviceReady() {
 					document.addEventListener("backbutton", function() {
 						if (goHomeOnBack) {
 							QRScanner.hide();
-							$("body").css("visibility", "visible");
-				    		$("body").css("background-color", "white");
-				    		$("#scanner-data").html("");
-				    		$("#all-content").css('display', 'block');
+							returnHome();
 				    		goHomeOnBack = false;
 				    	}
 				    	else {
@@ -417,9 +414,11 @@ function onDeviceReady() {
 										registerPost(text);
 										 $("#scanner-data").html("<h1> sent!! </h1> <button>Done</button>");
 										 $("#scanner-data button").click(function(){
+										 	returnHome();
+										 	/*
 											$("#scanner-data").html("");
 							  				$("#all-content").css('display', 'block');
-											goHomeOnBack = false;
+											goHomeOnBack = false;*/
 										 });
 									}
 									console.log(text);
@@ -501,11 +500,19 @@ function onDeviceReady() {
 					 }
 
 					 $("#scanner-data button").click(function(){
-							$("#scanner-data").html("");
-					  		$("#all-content").css('display', 'block');
-					  		goHomeOnBack = false;
+							returnHome();
 					 });
 					}
+
+					function returnHome() {
+						$("body").css("visibility", "visible");
+				    	$("body").css("background-color", "white");
+						$("#scanner-data").html("");
+						$("#scanner-data").css({"background-color": "#bb6bdb"});
+						$("#all-content").css('display', 'block');
+					  	goHomeOnBack = false;
+					}
+
 
 					function registerPost(id){
 						db.ref("/registered-hackers/" + id ).update({
