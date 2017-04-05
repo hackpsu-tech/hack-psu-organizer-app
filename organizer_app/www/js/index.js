@@ -35,6 +35,8 @@ function onDeviceReady() {
 	firebase.auth().onAuthStateChanged(function(user) {
   		if (user && firstSignIn) {
   			firstSignIn = false;
+  			var platform = device.platform;
+  			console.log(platform);
 			  var db = firebase.database();
 					var selectedImage = null;
 					var imageUrl = null;
@@ -50,9 +52,6 @@ function onDeviceReady() {
 					var goHomeOnBack = false;
 					document.addEventListener("backbutton", function() {
 						if (goHomeOnBack) {
-							QRScanner.cancelScan(function(status) {
-								console.log("cancel scan: " + status);
-							});
 							QRScanner.hide();
 							$("body").css("visibility", "visible");
 				    		$("body").css("background-color", "white");
@@ -379,55 +378,66 @@ function onDeviceReady() {
 				  });
 
 					function scanIt(use){
-					  QRScanner.show();
 
-					  $("body").css("visibility", "hidden");
-					  $("body").css("background-color", "transparent");
-					  goHomeOnBack = true;
-					  QRScanner.scan(function(err, text){
-					    if(err){
-					      switch(err){
-					        case 0:
-					          alert("An unexpected error!!");
-					          break;
-					        case 1:
-					          alert("Camera access denied!!");
-					          break;
-					        case 2:
-					          alert("Camera access is restricted");
-					          break;
-					        case 3:
-					          alert("The back camera is unavailable.");
-					          break;
-					        case 4:
-					          alert("The front camera is unavailable.");
-					          break;
-					        default:
-					          console.log("error code: " + err);
-					      }
-					    }
-					    else {
-							if(use == 1){
-								dataCheck(text);
-							}else if(use == 2){
-								registerPost(text);
-								 $("#scanner-data").html("<h1> sent!! </h1> <button>Done</button>");
-								 $("#scanner-data button").click(function(){
-										$("#scanner-data").html("");
-					  					$("#all-content").css('display', 'block');
-					  					goHomeOnBack = false;
-								 });
-							}
-							console.log(text);
-						}
-					    QRScanner.hide();
-					    $("body").css("visibility", "visible");
-					    $("body").css("background-color", "white");
-					    if (device.platform != "Android") {
-							$("#all-content").css('display', 'block');
-						}
-					  });
-					}
+						QRScanner.prepare(function (err, status) {
+							console.log(err);
+							console.log(status);
+						  	QRScanner.scan(function(err, text){
+							    if(err){
+								    console.log(err._message);
+								    switch(err.code){
+								        case 0:
+								        	alert("An unexpected error!!");
+								        	break;
+								        case 1:
+								          	alert("Camera access denied!!");
+								          	break;
+								        case 2:
+								          	alert("Camera access is restricted");
+								          	break;
+								        case 3:
+								          	alert("The back camera is unavailable.");
+								          	break;
+								        case 4:
+								          	alert("The front camera is unavailable.");
+								          	break;
+								        case 5:
+								          	alert("Camera is unavailable");
+								          	break;
+								        case 6: 
+								          	console.log("Scan cancelled");
+								          	break;
+								        default:
+								          	console.log("error code: " + err.name);
+								    }
+							    } else {
+									if(use == 1){
+										dataCheck(text);
+									}else if(use == 2){
+										registerPost(text);
+										 $("#scanner-data").html("<h1> sent!! </h1> <button>Done</button>");
+										 $("#scanner-data button").click(function(){
+											$("#scanner-data").html("");
+							  				$("#all-content").css('display', 'block');
+											goHomeOnBack = false;
+										 });
+									}
+									console.log(text);
+							    	QRScanner.hide();
+								    $("body").css("visibility", "visible");
+								    $("body").css("background-color", "white");
+								    if (platform != "Android") {
+										$("#all-content").css('display', 'block');
+									}
+								}
+							});
+						  	QRScanner.show();
+						  	$("body").css("visibility", "hidden");
+						  	$("body").css("background-color", "transparent");
+						  	goHomeOnBack = true;
+					});
+				}
+
 					// gets data from firebase
 					function dataCheck(qrId){
 						db.ref("/registered-hackers/" + qrId ).once("value").then(function(snapshot){

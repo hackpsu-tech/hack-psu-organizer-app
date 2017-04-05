@@ -20,6 +20,9 @@
             "CAMERA_USAGE_DESCRIPTION": " ",
             "PHOTOLIBRARY_USAGE_DESCRIPTION": " ",
             "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
         }
     },
     "dependent_plugins": {

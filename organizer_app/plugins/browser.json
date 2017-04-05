@@ -18,6 +18,9 @@
         },
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
         }
     },
     "dependent_plugins": {
