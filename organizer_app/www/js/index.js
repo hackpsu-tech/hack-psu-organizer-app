@@ -25,6 +25,8 @@ var config = {
   };
   firebase.initializeApp(config);
   var firstSignIn = true;
+  var cmpen362SignIn = false;
+  var cmpen362SignOut = false;
 
 function onDeviceReady() {
 
@@ -77,6 +79,78 @@ function onDeviceReady() {
 						}
 						else {
 							sendUpdate = false;
+						}
+					});
+
+					$("#cmpen362-signin-check").click(function() {
+						if( $(this).is(':checked') ) {
+							cmpen362SignIn = true;
+							if (cmpen362SignOut) {
+								$("#cmpen362-signout-check").click();
+							}
+						}
+						else {
+							cmpen362SignIn = false;
+						}
+					});
+
+					$("#cmpen362-signout-check").click(function() {
+						if( $(this).is(':checked') ) {
+							cmpen362SignOut = true;
+							if (cmpen362SignIn) {
+								$("#cmpen362-signin-check").click();
+							}
+						}
+						else {
+							cmpen362SignOut = false;
+						}
+					});
+
+					$("#cmpen362-submit").click(function() {
+						var id = $("#cmpen362-input").val();
+						if (/^\+?(0|[1-9]\d*)$/.test(id) == false) {
+							$("#cmpen362-status").html("ERROR - id must be a number");
+						}
+						else if (id.length != 9) {
+							$("#cmpen362-status").html("ERROR - id must be 9 digits");
+						}
+						else if (id[0] != "9") {
+							$("#cmpen362-status").html("ERROR - id must start with 9");
+						}
+						else {
+							if (cmpen362SignIn) {
+								db.ref("/cmpen362/" + id).update({
+									"signed_in":true
+								});
+								$("#cmpen362-status").html("SUCCESS - signed in");
+							}
+							else if (cmpen362SignOut) {
+								db.ref("/cmpen362/" + id).once('value').then(function(snapshot) {
+									if (snapshot.val() == null || snapshot.val().signed_in != true) {
+										$("#cmpen362-status").html("ERROR - did not sign in");
+									}
+									else {
+										db.ref("/cmpen362/" + id).update({
+											"signed_out":true
+										});
+										$("#cmpen362-status").html("SUCCESS - signed out");
+									}
+								});
+							}
+							else {
+								$("#cmpen362-status").html("ERROR - sign in/out not selected");
+							}
+						}
+					});
+
+					$("#cmpen362-close").click(function() {
+						$("#cmpen362-input").val("");
+						$("#cmpen362-status").html("");
+						if (cmpen362SignIn) {
+							$("#cmpen362-signin-check").click();
+						}
+						if (cmpen362SignOut) {
+							$("#cmpen362-signout-check").click();
 						}
 					});
 

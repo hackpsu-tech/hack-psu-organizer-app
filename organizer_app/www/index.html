@@ -90,11 +90,45 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-xs-4">
                             <div id="send" class="button">Send</div>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-4">
                             <div id="reset" class="button">Reset</div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div id="cmpen362" class="button" data-toggle="modal" data-target="#cmpen362-modal">CMPEN 362</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="cmpen362-modal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content center">
+                            <div class="container-fluid">
+                                <h4>Enter 9 digit id number:</h4>
+                                <div class="row">
+                                    <div class="col-xs-2"></div>
+                                    <div class="col-xs-8">
+                                        <textarea id="cmpen362-input"></textarea>
+                                    </div>
+                                    <div class="col-xs-2"></div>
+                                </div>
+                                <div class="row">
+                                    <input id="cmpen362-signin-check" type="checkbox">&nbsp;Sign in</input>
+                                    <input id="cmpen362-signout-check" type="checkbox">&nbsp;Sign out</input>
+                                </div>
+                                <div class="row">
+                                    Send Status: <span id="cmpen362-status"></span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4"></div>
+                                    <div id="cmpen362-submit" class="col-xs-4 button">Send</div>
+                                    <div class="col-xs-4"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="cmpen362-close" class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
