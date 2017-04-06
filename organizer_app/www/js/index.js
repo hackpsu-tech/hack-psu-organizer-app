@@ -272,7 +272,7 @@ function onDeviceReady() {
 							 }
 							 var notification = initNotification();
 							 notification.registration_ids = ids.browser;
-							 notification.notification.click_action = "https://notifications-b01a3.firebaseapp.com/";
+							 notification.notification.click_action = "https://hackpsu.org/live";
 							 notification.notification.icon = "https://notifications-b01a3.firebaseapp.com/assets/images/hackpsulogo.png";
 							 if (notification.registration_ids.length > 0) {
 								$.ajax({
