@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		09C1C45A65AF478E94143912 /* UIImage+CropScaleOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 257DC753070F4555A5B9F8D6 /* UIImage+CropScaleOrientation.m */; };
@@ -24,6 +23,8 @@
 		9F6BB3279C8E4C88BC408BEB /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = C05E135E1F5C4B80A925BB12 /* CDVNotification.m */; };
 		A87EF571CEB94F28915C79A4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6E23D3C46994CD5B13B6EB9 /* ImageIO.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C7C5437BA4C3405C8EDC36E7 /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 76F6C40132BE4DBE81089FD0 /* CDVNotification.bundle */; };
+		91144C92FC934BBF9EE3622A /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0746DE0BB65247EFB56EA625 /* CDVDevice.m */; };
+		30A675F34CB04D30BD07EE67 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEBA755317D4262814C1D08 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,9 @@
 		EF8777914A4D44288DAEADCD /* CDVNotification.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVNotification.h; path = "cordova-plugin-dialogs/CDVNotification.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "HackPSU Organizer/config.xml"; sourceTree = "<group>"; };
 		FB28170AED7842A9935024EE /* QRScanner.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = QRScanner.swift; path = "cordova-plugin-qrscanner/QRScanner.swift"; sourceTree = "<group>"; };
+		0746DE0BB65247EFB56EA625 /* CDVDevice.m */ = {isa = PBXFileReference; name = "CDVDevice.m"; path = "cordova-plugin-device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		7AD73A003EAE43F49FE03BB2 /* CDVDevice.h */ = {isa = PBXFileReference; name = "CDVDevice.h"; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		8BEBA755317D4262814C1D08 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 				A87EF571CEB94F28915C79A4 /* ImageIO.framework in Frameworks */,
 				81A48068239F467291A2B8C7 /* CoreLocation.framework in Frameworks */,
 				847AC268F7334D78AB301512 /* AVFoundation.framework in Frameworks */,
+				30A675F34CB04D30BD07EE67 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +171,7 @@
 				D6E23D3C46994CD5B13B6EB9 /* ImageIO.framework */,
 				D32647C275034ED1A99C24B1 /* CoreLocation.framework */,
 				41274FE94E1040BA832EDE25 /* AVFoundation.framework */,
+				8BEBA755317D4262814C1D08 /* libz.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -201,6 +207,8 @@
 				BA53618E8D904E19B8E53FC1 /* CDVCamera.h */,
 				5DC526754CFC4779B4F0B859 /* CDVJpegHeaderWriter.h */,
 				E4FDC79BC60749208D987C56 /* CDVExif.h */,
+				0746DE0BB65247EFB56EA625 /* CDVDevice.m */,
+				7AD73A003EAE43F49FE03BB2 /* CDVDevice.h */,
 			);
 			name = Plugins;
 			path = "HackPSU Organizer/Plugins";
@@ -243,7 +251,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 830;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 8Y3KZTG6X4;
@@ -327,6 +335,7 @@
 				09C1C45A65AF478E94143912 /* UIImage+CropScaleOrientation.m in Sources */,
 				28FF8FD1DE3041E794273D50 /* CDVCamera.m in Sources */,
 				703AEB5C605D4DBA8FBD9F63 /* CDVJpegHeaderWriter.m in Sources */,
+				91144C92FC934BBF9EE3622A /* CDVDevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

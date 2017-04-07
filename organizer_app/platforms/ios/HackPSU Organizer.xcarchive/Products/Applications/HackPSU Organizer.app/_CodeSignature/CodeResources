@@ -86,7 +86,7 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		BjrRYFOZoye34Deqazhhl8xlTnE=
+		XAXiIZbvV5VWMufGLbTP5v5Ul2M=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -94,7 +94,7 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
-		rqLfYd270C3FkTghKIPrOiEbEKs=
+		gq1Vsf3kpzvY01uYbzDGTV1b4vs=
 		</data>
 		<key>CDVNotification.bundle/beep.wav</key>
 		<data>
@@ -102,55 +102,55 @@
 		</data>
 		<key>Frameworks/libswiftAVFoundation.dylib</key>
 		<data>
-		zqdQ7Wqa8Wx9ZhQG6IcEyy5CF9M=
+		0Qk8FJykqS1QdMYMtoUKGrqz6Vc=
 		</data>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<data>
-		eo5jh1dXnD1qYWclCeEJHedmzZ0=
+		XfzqMn7+P3J5kx9/bT5QWTC9ZoQ=
 		</data>
 		<key>Frameworks/libswiftCoreAudio.dylib</key>
 		<data>
-		31/UHWi1HSeRGyDq0lahrs37XgY=
+		1wHudi3M/QTxHOW2eWtWSW1HZ1c=
 		</data>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<data>
-		hYQE/r8TnPNkzGmdL9Xf1IJVM8Y=
+		GQCv/AZVIzBhqkAtZesIMo2hNso=
 		</data>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<data>
-		YNJpbpPr7OvkWydNBaWVrQM4Hc8=
+		kBuFToLruir1/3P2ymPDURM2ofo=
 		</data>
 		<key>Frameworks/libswiftCoreMedia.dylib</key>
 		<data>
-		Slj5bQFa9MCPKi4D+rs5BmwbMEo=
+		yBMUrnXDN9ZKkYvf8wUxgb8vOzM=
 		</data>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<data>
-		tVhx2k1spuZQzqT42J0x2WExvXc=
+		maOxd3tBSNnHlJBOulDjXkTogrY=
 		</data>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<data>
-		zR+cKcyFW07ZH6nt+3AEuTbZx9o=
+		RP58C4WrETkuaSTo8PP04YSXPG0=
 		</data>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<data>
-		sTJUgh0WKuKHIUr3en6rkqcFxww=
+		2bVGUtIy6kV9IlCQT6KREF/7e18=
 		</data>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<data>
-		/kKEK+SxTdWCoHtZhwIynA7aduE=
+		xtJQPx2uL5aWZYrlR7DbR04Nues=
 		</data>
 		<key>Frameworks/libswiftQuartzCore.dylib</key>
 		<data>
-		d85XRtwnDvs1LzNXJVDbzRTWYYk=
+		nfwmRhgKQfQBSDe9+XXLQXDAkeY=
 		</data>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<data>
-		gUtYNv5KYxVv7Ecfaqo5XeZj1pk=
+		HFgmP2x8TEya/mud8RS0vWjNV/Y=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		RsRuzITIPXjjPQws1x+8ciijUbI=
+		IAzW677UBeFpubD6dfnFaJ2P8mQ=
 		</data>
 		<key>LaunchImage-568h@2x.png</key>
 		<data>
@@ -210,7 +210,7 @@
 		</data>
 		<key>MainViewController.nib</key>
 		<data>
-		rxpScj76TOax7t6U5K2Or5Rqe3E=
+		udunppfFiUD5BOkkTxjZhPGBTK0=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -222,11 +222,11 @@
 		</data>
 		<key>config.xml</key>
 		<data>
-		AEkhQhrAkzVj5DRdVKeCj53kuC0=
+		vJOQMLmhgALdxVTc0MsOiNjaQUM=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		e8I/++Gyv3kRcuZUrim+9YjJLSM=
+		eqMiOP7tXMhMvCBMub6ET9XrZ+8=
 		</data>
 		<key>www/bundle.js</key>
 		<data>
@@ -246,7 +246,7 @@
 		</data>
 		<key>www/cordova_plugins.js</key>
 		<data>
-		AJF+Q5hFURB3cRxU9OaPHj9PkmA=
+		s+hYHW/+3n6TUmzYtJkyC+1esf0=
 		</data>
 		<key>www/css/bootstrap.min.css</key>
 		<data>
@@ -258,7 +258,7 @@
 		</data>
 		<key>www/css/index.css</key>
 		<data>
-		6BHTeDao72RDIAOM2LLDVQ7j3ho=
+		iJpbSby+OutVIANUbVUTCD44woc=
 		</data>
 		<key>www/img/logo.png</key>
 		<data>
@@ -266,11 +266,7 @@
 		</data>
 		<key>www/index.html</key>
 		<data>
-		0lGIzZS36YOmj8j9PBHiiMVjKAY=
-		</data>
-		<key>www/js/ServiceAccountKey.json</key>
-		<data>
-		pxfSsPLVztkDZr+kj0VyJoq2xxs=
+		0Lu9dbK4vpmYfIipHCwj/LTgmHo=
 		</data>
 		<key>www/js/bootstrap.min.js</key>
 		<data>
@@ -278,7 +274,7 @@
 		</data>
 		<key>www/js/index.js</key>
 		<data>
-		t2fPEBLneOF8D6BRHa9GbRneoww=
+		W1sBFqavZ1p9cujQ9vbTKkxDM7Y=
 		</data>
 		<key>www/js/jquery.min.js</key>
 		<data>
@@ -7412,6 +7408,10 @@
 		<data>
 		BGPJLreG2O+OYfIg0g0vbA3c7FM=
 		</data>
+		<key>www/plugins/cordova-plugin-device/www/device.js</key>
+		<data>
+		DgD9WKGqlbNViEZBSi4Wenbl/uM=
+		</data>
 		<key>www/plugins/cordova-plugin-dialogs/www/notification.js</key>
 		<data>
 		BNzKfnkg7V/kfNCQoys8B0lNxu0=
@@ -7647,11 +7647,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			BjrRYFOZoye34Deqazhhl8xlTnE=
+			XAXiIZbvV5VWMufGLbTP5v5Ul2M=
 			</data>
 			<key>hash2</key>
 			<data>
-			D9xG1J2uI8EdQrfLW/tL9NJ0bdUdPe9Wf726Ktnv4f8=
+			rBqyiQ+A12iX/pmFUhxa9VM1k8/gsklKT+XYIHUPN2U=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
@@ -7669,11 +7669,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			rqLfYd270C3FkTghKIPrOiEbEKs=
+			gq1Vsf3kpzvY01uYbzDGTV1b4vs=
 			</data>
 			<key>hash2</key>
 			<data>
-			R8mp19ytAH/wAWco1l7ycVJI77bBTPWCpu9P4nZrGng=
+			GnXAOxKZmxJ4Ols9ewUm7FNkBYw07S0RgwCTrBJuTcg=
 			</data>
 		</dict>
 		<key>CDVNotification.bundle/beep.wav</key>
@@ -7691,132 +7691,132 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			zqdQ7Wqa8Wx9ZhQG6IcEyy5CF9M=
+			0Qk8FJykqS1QdMYMtoUKGrqz6Vc=
 			</data>
 			<key>hash2</key>
 			<data>
-			PguQAhSxh/095ufFWWM6dAugioI6hdozTf0xYThX/e0=
+			U1T8DZdX5bbB6Iba2kZEBL/FEvA9UUWj598GU5WeRJA=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCore.dylib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			eo5jh1dXnD1qYWclCeEJHedmzZ0=
+			XfzqMn7+P3J5kx9/bT5QWTC9ZoQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			4l2R8d6ArLiTivRqQBjltJ6PH+rMCZQ554ZfPDVs6NM=
+			Bx5X0zfcnUHdRTPpqYMiV+AE6614xWru6e1FckcYXkI=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCoreAudio.dylib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			31/UHWi1HSeRGyDq0lahrs37XgY=
+			1wHudi3M/QTxHOW2eWtWSW1HZ1c=
 			</data>
 			<key>hash2</key>
 			<data>
-			ZAfyLBHlqglSl5bRTnYVrZeed0pWi5Yjj8qz5g/wHg4=
+			5TLZ/jarc6sUjffttoQu5TNAJxjXgr+OAZ5q9pyDrCw=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCoreGraphics.dylib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			hYQE/r8TnPNkzGmdL9Xf1IJVM8Y=
+			GQCv/AZVIzBhqkAtZesIMo2hNso=
 			</data>
 			<key>hash2</key>
 			<data>
-			NoCYBWUc5A2x4WCHT59TkOQhbL91DP/NB8pJeL9sd8k=
+			WUTszmdU+Nw76kowY9Rfju7DQGfcrIwKCpA5psOqlcE=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCoreImage.dylib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			YNJpbpPr7OvkWydNBaWVrQM4Hc8=
+			kBuFToLruir1/3P2ymPDURM2ofo=
 			</data>
 			<key>hash2</key>
 			<data>
-			+Xp6hTEPEf9s3F5E5pBZLHRAk9AOKY4JU4980gNEnoM=
+			p38iVRL7/rLTEgOW5iaTaVkuscGetRSBJcH+Dm0xFPM=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftCoreMedia.dylib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Slj5bQFa9MCPKi4D+rs5BmwbMEo=
+			yBMUrnXDN9ZKkYvf8wUxgb8vOzM=
 			</data>
 			<key>hash2</key>
 			<data>
-			YTvovPcTvBQm94zP2m+rmhM+Qjeccd9EvqUoLP1nFKs=
+			IewWJ6cVBZdNzzzu90xySGWTvOZeemw7QIlne5s9dUo=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftDarwin.dylib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			tVhx2k1spuZQzqT42J0x2WExvXc=
+			maOxd3tBSNnHlJBOulDjXkTogrY=
 			</data>
 			<key>hash2</key>
 			<data>
-			4Kw1OWJ94iPs1oyxbk2uxrrR+wHJ48wBEKtOhcp5foo=
+			HS5uN7d96ZLF04B6rGknjayLXnrIHXFTghJNxKrbRZw=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftDispatch.dylib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zR+cKcyFW07ZH6nt+3AEuTbZx9o=
+			RP58C4WrETkuaSTo8PP04YSXPG0=
 			</data>
 			<key>hash2</key>
 			<data>
-			48WrsNSRVrUmSso3MUt+KK41kwLOgoGck0QT3tULDMc=
+			eJasiHnquqgqnN50boejDAH8QCgaP8BByMohv5xNfHI=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftFoundation.dylib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			sTJUgh0WKuKHIUr3en6rkqcFxww=
+			2bVGUtIy6kV9IlCQT6KREF/7e18=
 			</data>
 			<key>hash2</key>
 			<data>
-			3hDVVC7Uxrd7hgaK9q/YzddqXXP8KsdRJ8lYlypMaiM=
+			a3YtVgTP5WI1qtZc7+bYximAJ9T+BqZrwGamUAwpfGo=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftObjectiveC.dylib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			/kKEK+SxTdWCoHtZhwIynA7aduE=
+			xtJQPx2uL5aWZYrlR7DbR04Nues=
 			</data>
 			<key>hash2</key>
 			<data>
-			4osLLqj/6emXo9i36GIKnBOs7MlHLL1r36x/KGE7j6o=
+			bRKEEiOQmb4aRPc7DrTI/5do5nlhFcdbcgj79cxIaus=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftQuartzCore.dylib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			d85XRtwnDvs1LzNXJVDbzRTWYYk=
+			nfwmRhgKQfQBSDe9+XXLQXDAkeY=
 			</data>
 			<key>hash2</key>
 			<data>
-			pYtPbWVNlQl8e5nsx7iX+ZGj0umFN8pJvH28tnobQuI=
+			9V/PEGOZdBUXvcDtPtFPNS82CRauZj/ZBaeRUiKXfvQ=
 			</data>
 		</dict>
 		<key>Frameworks/libswiftUIKit.dylib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			gUtYNv5KYxVv7Ecfaqo5XeZj1pk=
+			HFgmP2x8TEya/mud8RS0vWjNV/Y=
 			</data>
 			<key>hash2</key>
 			<data>
-			9nKRrgCqS3uE9bGn1x48l057C41Rl0oioCAx3A2R+zM=
+			zZw41qVSfnL7qUsvrqI03kqKtjUmorpzA9O6/iYV6fE=
 			</data>
 		</dict>
 		<key>LaunchImage-568h@2x.png</key>
@@ -7977,11 +7977,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			rxpScj76TOax7t6U5K2Or5Rqe3E=
+			udunppfFiUD5BOkkTxjZhPGBTK0=
 			</data>
 			<key>hash2</key>
 			<data>
-			1abgTuBnO66NGB63sZwJGOrwowvwzL3EwIBibtlHi68=
+			L1L1Elb9kJ9gfqP5g+FHyjrRZF0Gs3Mpwb9CMhVGIIg=
 			</data>
 		</dict>
 		<key>archived-expanded-entitlements.xcent</key>
@@ -7999,22 +7999,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			AEkhQhrAkzVj5DRdVKeCj53kuC0=
+			vJOQMLmhgALdxVTc0MsOiNjaQUM=
 			</data>
 			<key>hash2</key>
 			<data>
-			Z+KulSzo9FFdy5pVrpN0OZHj9ogrUzoSZrGBo0+lRkg=
+			W5GLWZaKf1Sqpy4IzxofYSq7M5JZz/l78LN8jbZM/A4=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			e8I/++Gyv3kRcuZUrim+9YjJLSM=
+			eqMiOP7tXMhMvCBMub6ET9XrZ+8=
 			</data>
 			<key>hash2</key>
 			<data>
-			Po/hwvVI4pnBdBwmogZjnBXnDE/47vgqcSqFZgi3m0Y=
+			gIPgW5bP+WdXDiHf9fWYTFgHZR28CxzWCAviYjoBqtc=
 			</data>
 		</dict>
 		<key>www/bundle.js</key>
@@ -8065,11 +8065,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			AJF+Q5hFURB3cRxU9OaPHj9PkmA=
+			s+hYHW/+3n6TUmzYtJkyC+1esf0=
 			</data>
 			<key>hash2</key>
 			<data>
-			lE3cnGFpy5s55Ghgc9OKsUbyBkVUCq4fQVrQRMjtOs0=
+			60ztocY39V8KgADrVmmjhD2t+iiNRMa/671zQ/8IpfY=
 			</data>
 		</dict>
 		<key>www/css/bootstrap.min.css</key>
@@ -8098,11 +8098,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			6BHTeDao72RDIAOM2LLDVQ7j3ho=
+			iJpbSby+OutVIANUbVUTCD44woc=
 			</data>
 			<key>hash2</key>
 			<data>
-			A24N4lx9SAiIo33X6A9CI8yI2zsYgo9QMupDemu9xOI=
+			Lxh8KWL+ag6tusg2ABxoKnu+UbPkuwlnLMpi1a76P4A=
 			</data>
 		</dict>
 		<key>www/img/logo.png</key>
@@ -8120,22 +8120,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0lGIzZS36YOmj8j9PBHiiMVjKAY=
+			0Lu9dbK4vpmYfIipHCwj/LTgmHo=
 			</data>
 			<key>hash2</key>
 			<data>
-			utuMrE2on+oJEhzU7Zy1zaDqdPYE7aKMk2UU+YgkEHw=
-			</data>
-		</dict>
-		<key>www/js/ServiceAccountKey.json</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			pxfSsPLVztkDZr+kj0VyJoq2xxs=
-			</data>
-			<key>hash2</key>
-			<data>
-			GWYUlPrUIFLtb5Mn3UWUvJ2gWJBrwZ9k5dE8MgL5cKQ=
+			ygFZKuZoQKO7/BoPqFPOGUO3Qdq1kTrAUaV95/9PJlI=
 			</data>
 		</dict>
 		<key>www/js/bootstrap.min.js</key>
@@ -8153,11 +8142,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			t2fPEBLneOF8D6BRHa9GbRneoww=
+			W1sBFqavZ1p9cujQ9vbTKkxDM7Y=
 			</data>
 			<key>hash2</key>
 			<data>
-			wLe6IKbFutTq+84PFZgRMVZ1lEuf/Cn7EZjz8ZXvZos=
+			VmPvn4cyO0LUjlmtxxm8s+CuoQUSXkJUGj//zsVTqcM=
 			</data>
 		</dict>
 		<key>www/js/jquery.min.js</key>
@@ -27771,6 +27760,17 @@
 			<key>hash2</key>
 			<data>
 			+M+Og3e2du+I94HT47ZQ/sNHjeVhel4YuJl9Dy/bejo=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-device/www/device.js</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			DgD9WKGqlbNViEZBSi4Wenbl/uM=
+			</data>
+			<key>hash2</key>
+			<data>
+			75fkIus2+MF7kZSUTo0HFvPQWqyneMrHDoQXHcvK/fk=
 			</data>
 		</dict>
 		<key>www/plugins/cordova-plugin-dialogs/www/notification.js</key>

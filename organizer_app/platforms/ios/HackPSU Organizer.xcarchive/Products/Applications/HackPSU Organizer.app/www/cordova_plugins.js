@@ -47,6 +47,14 @@ module.exports = [
         "clobbers": [
             "CameraPopoverHandle"
         ]
+    },
+    {
+        "id": "cordova-plugin-device.device",
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "pluginId": "cordova-plugin-device",
+        "clobbers": [
+            "device"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -57,7 +65,8 @@ module.exports.metadata =
     "cordova-plugin-swift-support": "3.1.1",
     "cordova-plugin-qrscanner": "2.5.0",
     "cordova-plugin-compat": "1.1.0",
-    "cordova-plugin-camera": "2.4.0"
+    "cordova-plugin-camera": "2.4.0",
+    "cordova-plugin-device": "1.1.5"
 };
 // BOTTOM OF METADATA
 });
