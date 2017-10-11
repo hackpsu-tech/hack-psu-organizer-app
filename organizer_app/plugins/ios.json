@@ -12,7 +12,25 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
+        },
+        "cordova-plugin-qrscanner": {
+            "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
+        },
+        "cordova-plugin-camera": {
+            "CAMERA_USAGE_DESCRIPTION": " ",
+            "PHOTOLIBRARY_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-swift-support": {
+            "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
+        }
+    }
 }

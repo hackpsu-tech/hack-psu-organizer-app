@@ -28,11 +28,25 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval' https://api.mlab.com https://fcm.googleapis.com/fcm/send; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+	<meta http-equiv="Content-Security-Policy"
+		content="default-src * 'self' 'unsafe-inline' 'unsafe-eval'
+			https://api.mlab.com
+			https://fcm.googleapis.com/fcm/send
+			*.gstatic.com
+			*.firebaseio.com;
+		    style-src 'self' 'unsafe-inline'
+			*.googleapis.com
+			;
+		    img-src *;">
+
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-storage.js"></script>
         <script src="js/jquery.min.js"></script>
         <script src="js/index.js"></script>
         <title>HackPSU Organizer</title>
@@ -46,7 +60,16 @@
             <textarea id="bodyInput"></textarea>
             <br />
             <input id="pushNotification" type="button" value="Push Notification" />
+            <input id="takePicture" type="button" value="Take Photo" />
+            <input id="choosePicture" type="button" value="Choose Photo" />
         </div>
+        <div class="center">
+          <button id="shirt">shirt</button>
+          <button id="checkin">checkin</button>
+        </div>
+        <div id="scanner-data">
+        </div>
+	<script type="text/javascript" src="cordova.js"></script>
    </body>
     </body>
 </html>
