@@ -68,10 +68,13 @@
                 </h3>
                 <div class="container-fluid">
                     <div class="col-xs-8 col-xs-offset-2">
-                        <div id="communicate" class="button">Communicate</div>
-                        <div id="track" class="button">QR Tracker</div>
+                        <div id="communicate" class="button" data-toggle="modal" data-target="#communicate-modal">Communicate</div>
+                        <div id="track" class="button" data-toggle="modal" data-target="#track-modal">QR Tracker</div>
                         <div id="manager" class="button">Event Managment</div>
                     </div>
+                </div>
+                <div id="track-modal" class="modal fade" role="dialog">
+                    <button id="track-close" class="btn btn-default" type="button" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
