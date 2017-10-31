@@ -237,67 +237,64 @@ function onDeviceReady() {
 
 					function pushNotification() {
 						uiResetLockCount = 2;
-						$.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"browser"}', function( data ) {
-							 for (var i = 0; i < data.length; i++) {
-								ids.browser.push(data[i]._id);
-							 }
-							 var notification = initNotification();
-							 notification.registration_ids = ids.browser;
-							 notification.notification.click_action = "https://hackpsu.org/live";
-							 notification.notification.icon = "https://notifications-b01a3.firebaseapp.com/assets/images/hackpsulogo.png";
-							 if (notification.registration_ids.length > 0) {
-								$.ajax({
-									url: 'https://fcm.googleapis.com/fcm/send',
-									type: "POST",
-									processData : false,
-									beforeSend: function (xhr) {
-										xhr.setRequestHeader('Content-Type', 'application/json');
-										xhr.setRequestHeader('Authorization', 'key=AAAAWbufXws:APA91bHfXsEZoJ7x4Zqe9qctxnL_73gknZfmznmP7f666KwkULCZ0yrTcueBVPWtZbfNTzK0y9kGWQy4M7h6hw6AESf6TGlgO2YVkJEj-HUDD1GksNtZsJ0mzeroaEodL8wq8oX__luN');
-									},
-									data: JSON.stringify(notification),
-									success: function () {
-										uiResetLockCount--;
-										resetNotificationUI(uiResetLockCount);
-									},
-									error: function(error) {
-										uiResetLockCount--;
-										alert("Error getting registered id's for desktop: " + error);
-										resetNotificationUI(uiResetLockCount);
-										console.log(error);
-									}
-								});
-							 }
+						var notification = initNotification();
+						notification.notification.click_action = "https://hackpsu.org/live";
+						notification.notification.icon = "https://notifications-b01a3.firebaseapp.com/assets/images/hackpsulogo.png";
+						$.ajax({
+							url: 'https://notifications-49e79.firebaseapp.com/sendmessage', //TODO: Change URL on Prod
+							type: "POST",
+							processData : false,
+							beforeSend: function (xhr) {
+								xhr.setRequestHeader('Content-Type', 'application/json');
+							},
+							data: JSON.stringify(notification),
+							success: function () {
+								uiResetLockCount--;
+								resetNotificationUI(uiResetLockCount);
+							},
+							error: function(error) {
+								uiResetLockCount--;
+								alert("Error getting registered id's for desktop: " + error);
+								resetNotificationUI(uiResetLockCount);
+								console.log(error);
+							}
+						});
+						// $.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"browser"}', function( data ) {
+						// 	 for (var i = 0; i < data.length; i++) {
+						// 		ids.browser.push(data[i]._id);
+						// 	 }
+							 
 
-						});
-						$.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"Android"}', function( data ) {
-							for (var i = 0; i < data.length; i++) {
-							 	ids.Android.push(data[i]._id);
-							}
-							var notification = initNotification();
-							notification.registration_ids = ids.Android;
-							notification.notification.click_action = "FCM_PLUGIN_ACTIVITY";
-							if (notification.registration_ids.length > 0) {
-								$.ajax({
-									url: 'https://fcm.googleapis.com/fcm/send',
-									type: "POST",
-									processData : false,
-									beforeSend: function (xhr) {
-										xhr.setRequestHeader('Content-Type', 'application/json');
-										xhr.setRequestHeader('Authorization', 'key=AAAAWbufXws:APA91bHfXsEZoJ7x4Zqe9qctxnL_73gknZfmznmP7f666KwkULCZ0yrTcueBVPWtZbfNTzK0y9kGWQy4M7h6hw6AESf6TGlgO2YVkJEj-HUDD1GksNtZsJ0mzeroaEodL8wq8oX__luN');
-									},
-									data: JSON.stringify(notification),
-									success: function () {
-										uiResetLockCount--;
-										resetNotificationUI(uiResetLockCount);
-									},
-									error: function(error) {
-										uiResetLockCount--;
-										resetNotificationUI(uiResetLockCount);
-										alert("Error getting registered id's for android: " + error);
-									}
-								});
-							}
-						});
+						// });
+						// $.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"Android"}', function( data ) {
+						// 	for (var i = 0; i < data.length; i++) {
+						// 	 	ids.Android.push(data[i]._id);
+						// 	}
+						// 	var notification = initNotification();
+						// 	notification.registration_ids = ids.Android;
+						// 	notification.notification.click_action = "FCM_PLUGIN_ACTIVITY";
+						// 	if (notification.registration_ids.length > 0) {
+						// 		$.ajax({
+						// 			url: 'https://fcm.googleapis.com/fcm/send',
+						// 			type: "POST",
+						// 			processData : false,
+						// 			beforeSend: function (xhr) {
+						// 				xhr.setRequestHeader('Content-Type', 'application/json');
+						// 				xhr.setRequestHeader('Authorization', 'key=AAAAWbufXws:APA91bHfXsEZoJ7x4Zqe9qctxnL_73gknZfmznmP7f666KwkULCZ0yrTcueBVPWtZbfNTzK0y9kGWQy4M7h6hw6AESf6TGlgO2YVkJEj-HUDD1GksNtZsJ0mzeroaEodL8wq8oX__luN');
+						// 			},
+						// 			data: JSON.stringify(notification),
+						// 			success: function () {
+						// 				uiResetLockCount--;
+						// 				resetNotificationUI(uiResetLockCount);
+						// 			},
+						// 			error: function(error) {
+						// 				uiResetLockCount--;
+						// 				resetNotificationUI(uiResetLockCount);
+						// 				alert("Error getting registered id's for android: " + error);
+						// 			}
+						// 		});
+						// 	}
+						// });
 
 				    /*
 					    $.get( 'https://api.mlab.com/api/1/databases/push-notification-registrations/collections/registrations?apiKey=Y9MYB5bt3fAyPmJ99eXfiRIJGZK9N-hz&q={"platform":"iOS"}', function( data ) {
@@ -346,7 +343,8 @@ function onDeviceReady() {
 					}
 
 					function initNotification() {
-						var notification = { "notification": {
+						var notification = { 
+							"notification": {
 								"title": $("#titleInput").val(),
 								"body": $("#bodyInput").val(),
 								"sound":"default",
@@ -357,8 +355,7 @@ function onDeviceReady() {
 							"data": {
 								"title": $("#titleInput").val(),
 								"body": $("#bodyInput").val()
-							},
-							"registration_ids" : null
+							}
 						};
 						return notification;
 					}
