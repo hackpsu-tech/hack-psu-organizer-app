@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval'
+			https://api.mlab.com
+			https://fcm.googleapis.com/fcm/send
+			*.gstatic.com
+			*.firebaseio.com
+			blob:*
+            gap://*;
+		    style-src 'self' 'unsafe-inline'
+			*.googleapis.com;
+		    img-src *;
+            worker-src
+            http://*
+            https://*;">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/Pages.css">
+    <link rel="stylesheet" type="text/css" href="css/Side-Nav.css">
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-storage.js"></script>
+    <script src="js/Communicate.js"></script>
+    <script src="js/Side-Nav.js"></script>
+    <title>HackPSU Communicate</title>
+</head>
+<body>
+    <div id="side-menu-nav" class="side-nav">
+        <div id="side-nav-header">
+            <span class="nav-bar-header">HackPSU Organizer App<span class="side-nav-close" onclick="closeNav()">&times;</span></span>
+        </div>
+        <div id="side-nav-content">
+            <ul>
+                <li class="nav-link"><a href="index.html">Home</a></li>
+                <li class="nav-link"><a href="Tracker.html">Tracker</a></li>
+                <li class="nav-link-active"><a class="active" href="Communicate.html">Communicate</a></li>
+                <li class="nav-link"><a href="Event_Management.html">Event Management</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="page-header">
+        <span><span class="side-nav-open" onclick="openNav()">&#9776;</span><span class="Page-title">Communication</span></span>
+    </div>
+</body>
+
+
+</html>
