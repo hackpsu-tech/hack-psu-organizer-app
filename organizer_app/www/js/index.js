@@ -1,4 +1,5 @@
 document.addEventListener("deviceready", onDeviceReady, false);
+/*
 var config = {
     apiKey: "AIzaSyBFluYW_DWuVeaEzCMNFzAaHlVQnK8Qzk8",
     authDomain: "notifications-b01a3.firebaseapp.com",
@@ -7,6 +8,16 @@ var config = {
     storageBucket: "notifications-b01a3.appspot.com",
     messagingSenderId: "385399873291"
   };
+/*/
+  var config = {
+    apiKey: "AIzaSyDiFm_g-RCf3xnO5anJ8Sp8nsRSfYxxdP0",
+    authDomain: "notificationtest-49e79.firebaseapp.com",
+    databaseURL: "https://notificationtest-49e79.firebaseio.com",
+    projectId: "notificationtest-49e79",
+    storageBucket: "notificationtest-49e79.appspot.com",
+    messagingSenderId: "775163784219"
+  };
+//*/
   firebase.initializeApp(config);
   var firstSignIn = true;
   var cmpen362SignIn = false;
@@ -17,13 +28,14 @@ function onDeviceReady() {
 	// var provider = new firebase.auth.GoogleAuthProvider();
 	firebase.auth().signInWithEmailAndPassword("hackpsudev@gmail.com", "hackpsudev2017").catch(function(error) {
 		console.error(error);
+		console.error("ERROR!!!");
 	})
 	firebase.auth().onAuthStateChanged(function(user) {
   		if (user && firstSignIn) {
   			firstSignIn = false;
   			var platform = device.platform;
   			console.log(platform);
-			  var db = firebase.database();
+			  	var db = firebase.database();
 					var selectedImage = null;
 					var imageUrl = null;
 					var ids = null;
@@ -48,94 +60,69 @@ function onDeviceReady() {
 						console.log("back button pressed");
 					}, false);
 
-					$("#enableNotification").click(function() {
-						if( $(this).is(':checked') ) {
-							sendPush = true;
-						}
-						else {
-							sendPush = false;
-						}
+					$("#sendNotification").click(function() {
+						navigator.notification.confirm(
+							getConfirmMessage(),
+							function(confirmIndex) {
+								if (confirmIndex != 1) {
+									return
+								}
+								pushNotification();
+								alert("Push notification sent");
+							},
+							'Confirm Send',           // title
+							[	'Confirm','Cancel']		// options
+						);
 					});
 
-					$("#enableUpdate").click(function() {
-						if( $(this).is(':checked') ) {
-							sendUpdate = true;
-						}
-						else {
-							sendUpdate = false;
-						}
-					});
+					$("#sendUpdate").click(function() {
+					    // Validate -> update #communicate-status text on error
+						if (sendUpdate && selectedImage == null) {
+							alert("You are required to have an image with a live update. Nothing sent");
+						} else if($("#communicate-txtTitle").val() == "" || $("#communicate-txtMessage").val() == "" ){
+                            alert("You are required to have a title and a description. Nothing sent");
+						} else {
+							navigator.notification.confirm(
+								getConfirmMessage(),
+								function(confirmIndex) {
+									if (confirmIndex == 1 && db && firebase && selectedImage != null) {
 
-					$("#cmpen362-signin-check").click(function() {
-						if( $(this).is(':checked') ) {
-							cmpen362SignIn = true;
-							if (cmpen362SignOut) {
-								$("#cmpen362-signout-check").click();
-							}
-						}
-						else {
-							cmpen362SignIn = false;
-						}
-					});
+										var storageRef = firebase.storage().ref();
+										var uuid = guid();
+										var newUpload = storageRef.child($("#titleInput").val() + '-' + uuid + '.jpg');
 
-					$("#cmpen362-signout-check").click(function() {
-						if( $(this).is(':checked') ) {
-							cmpen362SignOut = true;
-							if (cmpen362SignIn) {
-								$("#cmpen362-signin-check").click();
-							}
-						}
-						else {
-							cmpen362SignOut = false;
-						}
-					});
+										selectedImage = selectedImage.replace(/\s/g, '');
+										var uploadTask = newUpload.putString(selectedImage, 'base64', {contentType:'image/jpg'});
+										uploadTask.on('state_changed', function(snapshot) {
+										}, function(error) {
+											console.log("Image could not be uploaded to firebase");
+											alert("Image Upload Failed");
+										}, function() {
+											imageUrl = uploadTask.snapshot.downloadURL;
 
-					$("#cmpen362-submit").click(function() {
-						var id = $("#cmpen362-input").val();
-						if (/^\+?(0|[1-9]\d*)$/.test(id) == false) {
-							$("#cmpen362-status").html("ERROR - id must be a number");
-						}
-						else if (id.length != 9) {
-							$("#cmpen362-status").html("ERROR - id must be 9 digits");
-						}
-						else if (id[0] != "9") {
-							$("#cmpen362-status").html("ERROR - id must start with 9");
-						}
-						else {
-							if (cmpen362SignIn) {
-								db.ref("/cmpen362/" + id).update({
-									"signed_in":true
-								});
-								$("#cmpen362-status").html("SUCCESS - signed in");
-							}
-							else if (cmpen362SignOut) {
-								db.ref("/cmpen362/" + id).once('value').then(function(snapshot) {
-									if (snapshot.val() == null || snapshot.val().signed_in != true) {
-										$("#cmpen362-status").html("ERROR - did not sign in");
-									}
-									else {
-										db.ref("/cmpen362/" + id).update({
-											"signed_out":true
+											var updates = db.ref('updates');
+
+											var newUpdate = updates.push();
+											newUpdate.set({
+												"date": Date.now(),
+												"title": $("#titleInput").val(),
+												"body": $("#bodyInput").val(),
+												"url": imageUrl
+											});
+											alert("Update sent");
+											resetNotificationUI(uiResetLockCount);
 										});
-										$("#cmpen362-status").html("SUCCESS - signed out");
 									}
-								});
-							}
-							else {
-								$("#cmpen362-status").html("ERROR - sign in/out not selected");
-							}
+								},
+								'Confirm Send',           // title
+				    			['Confirm','Cancel']
+				    		);
 						}
 					});
 
-					$("#cmpen362-close").click(function() {
-						$("#cmpen362-input").val("");
-						$("#cmpen362-status").html("");
-						if (cmpen362SignIn) {
-							$("#cmpen362-signin-check").click();
-						}
-						if (cmpen362SignOut) {
-							$("#cmpen362-signout-check").click();
-						}
+					$("#sendBoth").click(function() {
+						$("#sendNotification").click();
+						$("#sendUpdate").click()
 					});
 
 					$("#reset").click(function() {
@@ -334,7 +321,7 @@ function onDeviceReady() {
 								    "body": $("#bodyInput").val()
 								  },
 								  "registration_ids": ids.iOS
-								
+
 				            };
 							if (notification.registration_ids.length > 0) {
 								console.log("pushing mobile notifications");
@@ -459,7 +446,7 @@ function onDeviceReady() {
 								        case 5:
 								          	alert("Camera is unavailable");
 								          	break;
-								        case 6: 
+								        case 6:
 								          	console.log("Scan cancelled");
 								          	break;
 								        default:
@@ -536,14 +523,14 @@ function onDeviceReady() {
 						 var table = "<table>" + firstName + lastName + rsvp + shirtSize + "</table>";
 						 if (platform != "Android") {
 							 alert("Hacker did not RSVP\n name: " + data.first_name + " " + data.last_name + "\n T-Shirt size: " + data.shirt_size);
-						 } 
+						 }
 						 $("#scanner-data").css("background-color", "red");
 						 $("#scanner-data").html(heading + table + shirtSize + done);
 					 }else if(num == 2){
 						 var heading = "<h1> Signed in and / or got  t-shirt</h1>";
 						 var table = "<table>" + firstName + lastName + rsvp + signedIn + gotTshirt + shirtSize +"</table>";
 						 if (platform != "Android") {
-							 alert("Hacker already signed in and / or got t-shirt\n name: " + data.first_name + " " + 
+							 alert("Hacker already signed in and / or got t-shirt\n name: " + data.first_name + " " +
 							 data.last_name + "\n T-Shirt size: " + data.shirt_size + "\n Got T-Shirt? : " + data.got_shirt);
 						 }
 						 $("#scanner-data").css("background-color", "red");
@@ -616,11 +603,11 @@ function onDeviceReady() {
 						// console.log("Logged in!");
 						// console.log(result);
 
-				    
+
 					// }).catch(function(error) {
 					// 	console.error(error);
-					// }) 
-					
+					// })
+
 
 
 }

@@ -39,8 +39,8 @@
 		    style-src 'self' 'unsafe-inline'
 			*.googleapis.com;
 		    img-src *;
-            worker-src
-            http://*
+            worker-src;
+            http://*;
             https://*;">
 
     <meta name="format-detection" content="telephone=no">
@@ -79,27 +79,77 @@
                             <a id="communicate" class="btn btn-primary btn-lg btn-block button" href="Communicate.html">Communicate</a>
                             <a id="tracker" class="btn btn-primary btn-lg btn-block button" href="Tracker.html">QR Tracker</a>
                             <a id="manager" class="btn btn-primary btn-lg btn-block button" href="Event_Management.html">Event Managment</a>
-                        </div>  
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--
-            <div class ="center">
-                <div class="row">
-                    <div id="track-modal" class="modal fade" role="dialog">
-                        <button id="track-close" class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                <div id="communicate-modal" class="modal fade" role="dialog">
+                    <div class="vertical-alignment-helper">
+                        <div class="modal-dialog vertical-align-center">
+                            <div class="modal-content center">
+                                <div class="container-fluid">
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-2 col-xs-offset-2">
+                                        <h3>Title: </h3>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <textarea id="communicate-txtTitle"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-2 col-xs-offset-2">
+                                        <h3>Message: </h3>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <textarea id="communicate-txtMessage"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-xs-offset-2">
+                                        <div id="takePicture" class="button">Take Photo</div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div id="choosePicture" class="button">Choose Photo</div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-4 col-xs-offset-2">
+                                        <div id="sendNotification" class="button">Push Notification</div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div id="sendUpdate" class="button">Live Update</div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-8 col-xs-offset-2">
+                                        <div id="sendBoth" class="button">Both</div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div id="communicate-status" class="status"></div>
+                                </div>
+                                <div class="row">
+                                    <button id="communicate-reset" class="btn btn-default" type="button">Reset</button>
+                                    <button id="communicate-close" class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                            <div id="scanner-data">
+                            </div>
+                        </div>
                     </div>
-                    <div id="manager-modal" class="modal fade" role="dialog">
-                        <button id="manager-close" class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-                    </div>
-                    <div id="communicate-modal" class="modal fade" role="dialog">
-                        <button id="communicate-close" class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
+                </div> <!-- end communicate modal -->
             </div>
         </div>
-        -->
-        <!--
+    </div>
+                            <!--    <script type="text/javascript" src="cordova.js"></script> -->
+</body>
+
+</html>
+<!--
         <div class="center">
             <h1>Title</h1>
             <textarea id="titleInput"></textarea>
@@ -176,10 +226,3 @@
             </div>
         </div>
 -->
-    </div>
-    <div id="scanner-data">
-    </div>
-    <script type="text/javascript" src="cordova.js"></script>
-</body>
-
-</html>
