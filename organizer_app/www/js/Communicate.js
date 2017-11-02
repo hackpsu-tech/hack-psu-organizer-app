@@ -125,7 +125,10 @@ function onDeviceReady() {
 
       $("#reset").click(function () {
         resetNotificationUI(uiResetLockCount);
-      });
+		resetImageURL(imageUrl);
+		resetTitle("");
+		resetMsg("");
+      }); 
 
 
 
