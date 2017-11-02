@@ -79,12 +79,14 @@ ul li{
 	padding-left: 8%;
 }
 
-ul li a{
+ul a li{
 	color: #133753;
 	/*font-family: 'Lato';*/
 	font-weight: bold;
 }
 
-ul li a.active{
+ul a.active{
 	color: white;
+	cursor: default;
+	pointer-events: none;
 }
