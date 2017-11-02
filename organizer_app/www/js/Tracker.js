@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-test(){
-	document.getElementByID('testing-area').innerHTML = "Fixed";
-}
-=======
 document.addEventListener("deviceready", onDeviceReady, false);
 /*
 var config = {
@@ -30,11 +25,6 @@ var cmpen362SignOut = false;
 
 function onDeviceReady() {
 
-  // var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithEmailAndPassword("hackpsudev@gmail.com", "hackpsudev2017").catch(function (error) {
-    console.error(error);
-    console.error("ERROR!!!");
-  });
   firebase.auth().onAuthStateChanged(function (user) {
     if (user && firstSignIn) {
       firstSignIn = false;
@@ -244,5 +234,3 @@ function onDeviceReady() {
 }
 
 //end of device ready
-
->>>>>>> b2db413b3a95975e5e0add87080172b8b66521d0

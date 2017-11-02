@@ -1,5 +1,5 @@
 document.addEventListener("deviceready", onDeviceReady, false);
-/*
+//*
 var config = {
     apiKey: "AIzaSyBFluYW_DWuVeaEzCMNFzAaHlVQnK8Qzk8",
     authDomain: "notifications-b01a3.firebaseapp.com",
@@ -22,7 +22,6 @@ firebase.initializeApp(config);
 var firstSignIn = true;
 var cmpen362SignIn = false;
 var cmpen362SignOut = false;
-
 function onDeviceReady() {
 
   // var provider = new firebase.auth.GoogleAuthProvider();

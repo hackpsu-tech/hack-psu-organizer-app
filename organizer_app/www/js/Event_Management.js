@@ -25,11 +25,6 @@ var cmpen362SignOut = false;
 
 function onDeviceReady() {
 
-  // var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithEmailAndPassword("hackpsudev@gmail.com", "hackpsudev2017").catch(function (error) {
-    console.error(error);
-    console.error("ERROR!!!");
-  });
   firebase.auth().onAuthStateChanged(function (user) {
     if (user && firstSignIn) {
       firstSignIn = false;
