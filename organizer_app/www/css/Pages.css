@@ -4,6 +4,7 @@
 	font-weight: bold;
 	font-size: 24px;
 	margin-right:37%;
+<<<<<<< HEAD
 	margin-left:35%; /*the math can be readjusted later*/
 	display: inline-block;
 	white-space:nowrap
@@ -36,4 +37,7 @@ div#header{
   left:0;
   width:100%;
   height:header-<length>;
+=======
+	margin-left:35%;
+>>>>>>> 761c0320999aafe23b04f4f15c55a9cc4d29fb94
 }

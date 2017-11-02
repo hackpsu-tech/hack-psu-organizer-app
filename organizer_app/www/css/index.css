@@ -45,13 +45,13 @@ tr, td {
 
 .button {
   background: #6C88B7;
-  padding:10px 10px;
-  margin: 5%;
-  margin-bottom: 0px;
+  padding:3% 3%;
+  margin: 3%;
+  margin-bottom: 3%;
   margin-right: 0px;
   margin-left: 0px;
   color: black;
-  font-weight: 600;
+  font-weight: 600; 
   font-size: large;
   cursor: pointer;
 } 
@@ -59,7 +59,7 @@ tr, td {
 .active-button {
   background: #173753;
   padding:10px 10px;
-  margin: 5%;
+  margin: 3%;
   margin-bottom: 0px;
   color: black;
   font-weight: 600;
@@ -86,4 +86,23 @@ tr, td {
     /* To center horizontally */
     margin: 0 auto;
     pointer-events:all;
+}
+
+.disabled{
+
+}
+
+.active{
+
+}
+
+#index-title{
+  margin-top:3%;
+  margin-bottom: 3%;
+}
+
+.selector-box{
+  margin-top: 3%;
+  margin-bottom: 3%;
+  
 }
