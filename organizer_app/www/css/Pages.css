@@ -37,3 +37,10 @@ div#header{
   width:100%;
   height:header-<length>;
 }
+
+.dropdown-selector{
+	width: 300px;
+	max-width: 500px;
+	max-height: 400px;
+	overflow-x: hidden;
+}
