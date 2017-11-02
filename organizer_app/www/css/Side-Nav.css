@@ -60,11 +60,8 @@
 }
 
 .nav-link-active{
-<<<<<<< HEAD
-=======
 	cursor: default;
 	pointer-events: none;
->>>>>>> 761c0320999aafe23b04f4f15c55a9cc4d29fb94
 	background-color: #D24D23;
 	color: white;
 	border-radius: 20px;
@@ -82,23 +79,14 @@ ul li{
 	padding-left: 8%;
 }
 
-<<<<<<< HEAD
 ul a li{
-=======
-ul li a{
->>>>>>> 761c0320999aafe23b04f4f15c55a9cc4d29fb94
 	color: #133753;
 	/*font-family: 'Lato';*/
 	font-weight: bold;
 }
 
-<<<<<<< HEAD
 ul a.active{
 	color: white;
 	cursor: default;
 	pointer-events: none;
-=======
-ul li a.active{
-	color: white;
->>>>>>> 761c0320999aafe23b04f4f15c55a9cc4d29fb94
 }
