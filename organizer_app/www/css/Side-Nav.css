@@ -1,0 +1,90 @@
+/*@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+*/
+
+.side-nav{
+	width: 300px;
+	max-width: 90%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: -300px;
+	background-color: #6c88b7;
+	z-index: -9999;
+	transition: 0.5s;
+	padding-top: 10px;
+	overflow-x: hidden;
+}
+
+.side-nav-active{
+	left: 0;
+	z-index: 1;
+}
+
+.side-nav-open{
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.side-nav-close{
+	font-size:30px;
+	cursor: pointer;
+	margin-left: 25px;
+}
+
+.side-nav-content{
+	max-width: 200px;
+}
+
+.side-nav-header{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.nav-bar-header{
+	font-weight: bold;
+	padding-left: 10px;
+	font-size: 20px;
+}
+
+.nav-link{
+	cursor: pointer;
+}
+
+.nav-link:hover{
+	border-radius: 20px;
+	background-color: #40629C;
+}
+
+.nav-link a{
+	color: #173753;
+}
+
+.nav-link-active{
+	background-color: #D24D23;
+	color: white;
+	border-radius: 20px;
+}
+
+ul {
+	margin: 0;
+	list-style-type: none;
+	padding: 20px;
+}
+
+ul li{
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-left: 8%;
+}
+
+ul a li{
+	color: #133753;
+	/*font-family: 'Lato';*/
+	font-weight: bold;
+}
+
+ul a.active{
+	color: white;
+	cursor: default;
+	pointer-events: none;
+}

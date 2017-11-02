@@ -1,0 +1,39 @@
+.Page-title{
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+	font-size: 24px;
+	margin-right:37%;
+	margin-left:35%; /*the math can be readjusted later*/
+	display: inline-block;
+	white-space:nowrap
+}
+
+.menu-icon{
+	margin-left: -40px;
+	width: 33px;
+	float: left;
+	border-radius: 5px;
+	border-style: solid;
+	color: white;
+	border-color: #173753;
+	background: #173753;
+
+}
+
+.header-wrapper{
+	margin-left: 50px;
+}
+/*
+#page-header{
+	background: #6c88b7;
+
+}
+*/
+div#header{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:header-<length>;
+}
