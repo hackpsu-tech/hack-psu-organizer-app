@@ -46,6 +46,36 @@ function onDeviceReady() {
             var uiResetLockCount = 0;
 
 
+            $("#takePicture").click(function () {
+                navigator.camera.getPicture(function (imageURI) {
+                    selectedImage = imageURI;
+                    clearActiveButton($("#choosePicture"));
+                    setActiveButton($("#takePicture"));
+                }, function (message) {
+                    console.log("Taking picture failed: " + message);
+                    alert("Taking picture Failed");
+                }, {
+                    destinationType: Camera.DestinationType.DATA_URL,
+                    sourceType: Camera.PictureSourceType.CAMERA,
+                    popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY),
+                    correctOrientation: true
+                });
+            });
+
+            $("#choosePicture").click(function () {
+                navigator.camera.getPicture(function (imageURI) {
+                    selectedImage = imageURI;
+                    clearActiveButton($("#takePicture"));
+                    setActiveButton($("#choosePicture"));
+                }, function (message) {
+                    console.log("Image selection failed: " + message);
+                    alert("Image Selection Failed");
+                }, {
+                    destinationType: Camera.DestinationType.DATA_URL,
+                    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                    popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY)
+                });
+            });
             $("#sendNotification").click(function () {
                 if ($("#txtTitle").val() == "" || $("#txtMessage").val() == "") {
                     alert("You are required to have a title and a description. Nothing sent");
@@ -216,36 +246,6 @@ function onDeviceReady() {
                 return notification;
             }
 
-            $("#takePicture").click(function () {
-                navigator.camera.getPicture(function (imageURI) {
-                    selectedImage = imageURI;
-                    clearActiveButton($("#choosePicture"));
-                    setActiveButton($("#takePicture"));
-                }, function (message) {
-                    console.log("Taking picture failed: " + message);
-                    alert("Taking picture Failed");
-                }, {
-                    destinationType: Camera.DestinationType.DATA_URL,
-                    sourceType: Camera.PictureSourceType.CAMERA,
-                    popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY),
-                    correctOrientation: true
-                });
-            });
-
-            $("#choosePicture").click(function () {
-                navigator.camera.getPicture(function (imageURI) {
-                    selectedImage = imageURI;
-                    clearActiveButton($("#takePicture"));
-                    setActiveButton($("#choosePicture"));
-                }, function (message) {
-                    console.log("Image selection failed: " + message);
-                    alert("Image Selection Failed");
-                }, {
-                    destinationType: Camera.DestinationType.DATA_URL,
-                    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                    popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY)
-                });
-            });
 
             function guid() {
                 function s4() {

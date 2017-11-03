@@ -30,10 +30,11 @@
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
     <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval'
-			https://fcm.googleapis.com/fcm/send
+			https://api.mlab.com
+            https://fcm.googleapis.com/fcm/send
 			*.gstatic.com
 			*.firebaseio.com
-			blob://*
+			blob:*
             gap://*;
 		    style-src 'self' 'unsafe-inline'
 			*.googleapis.com;
@@ -60,6 +61,7 @@
     <script src="js/Side-Nav.js"></script>
     <title>HackPSU Communication</title>
 </head>
+
 <body>
     <div id="side-menu-nav" class="side-nav">
         <div id="side-nav-header">
@@ -67,10 +69,18 @@
         </div>
         <div id="side-nav-content">
             <ul>
-                <a href="index.html"><li class="nav-link"><span>Home</span></li></a>
-                <a href="Tracker.html"><li class="nav-link"><span>Tracker</span></li></a>
-                <a class="active" href="Communicate.html"><li class="nav-link-active"><span>Communicate</span></li></a>
-                <a href="Event_Management.html"><li class="nav-link" ><span>Event Management</span></li></a>
+                <a href="index.html">
+                    <li class="nav-link"><span>Home</span></li>
+                </a>
+                <a href="Tracker.html">
+                    <li class="nav-link"><span>Tracker</span></li>
+                </a>
+                <a class="active" href="Communicate.html">
+                    <li class="nav-link-active"><span>Communicate</span></li>
+                </a>
+                <a href="Event_Management.html">
+                    <li class="nav-link"><span>Event Management</span></li>
+                </a>
             </ul>
         </div>
     </div>
@@ -97,39 +107,39 @@
                 <div class="col-xs-6">
                     <textarea id="txtMessage"></textarea>
                 </div>
-            <div class="row">
-                <div class="col-xs-4 col-xs-offset-2">
-                    <button id="takePicture" class="button">Take Photo</button>
+                <div class="row">
+                    <div class="col-xs-4 col-xs-offset-2">
+                        <button id="takePicture" class="button">Take Photo</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <button id="choosePicture" class="button">Choose Photo</button>
+                    </div>
                 </div>
-                <div class="col-xs-4">
-                    <button id="choosePicture" class="button">Choose Photo</button>
+                <div class="row">
+                    <div class="col-xs-4 col-xs-offset-2">
+                        <button id="sendNotification" class="button">Push Notification</button>
+                    </div>
+                    <div class="col-xs-4">
+                        <button id="sendUpdate" class="button">Live Update</button>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4 col-xs-offset-2">
-                    <button id="sendNotification" class="button">Push Notification</button>
-                </div>
-                <div class="col-xs-4">
-                    <button id="sendUpdate" class="button">Live Update</button>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-xs-8 col-xs-offset-2">
-                    <button id="sendBoth" class="button">Both</button>
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <button id="sendBoth" class="button">Both</button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div id="communicate-status" class="status"></div>
+                </div>
+                <div class="row">
+                    <button id="reset" class="button" type="button">Reset</button>
                 </div>
             </div>
-
-            <div class="row">
-                <div id="communicate-status" class="status"></div>
-            </div>
-            <div class="row">
-                <button id="reset" class="button" type="button">Reset</button>
+            <div id="scanner-data">
             </div>
         </div>
-        <div id="scanner-data">
-        </div>
-    </div>
 </body>
 
 <script src="cordova.js"></script>

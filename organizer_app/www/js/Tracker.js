@@ -37,7 +37,7 @@ function onDeviceReady() {
             console.log(platform);
             var db = firebase.database();
 
-            // Get events
+            /*           // Get events
             db.ref("/events").once("value").then(function (snapshot) {
                 events = snapshot;
                 for (var event in snapshot) {
@@ -47,16 +47,16 @@ function onDeviceReady() {
                     }));
                 }
             });
+*/
 
-            
             // TODO: load extra credit box
-            
-            
+
+
             // Prepare QR Scanner
             QRScanner.prepare(function (err, status) {
                 console.log(err);
                 console.log(status);
-            });            
+            });
 
             // Reposition the popover if the orientation changes.
             window.onorientationchange = function () {
@@ -75,9 +75,9 @@ function onDeviceReady() {
                 });
                 if (user == null) {
                     alert("Fraud alert!");
-                    return
+                    return;
                 }
-                
+
                 // TODO change `"registration"` to its given UID
                 if ($("#event").val() == "registration") {
                     db.ref("/registered/" + user._iu + "/attended").set(true);
@@ -93,12 +93,12 @@ function onDeviceReady() {
                         numScans = snapshot.val() + 1;
                     } else {
                         // returning person who was not invited
-                        alert("Re-entry is not aloud at this time.")
-                        return
+                        alert("Re-entry is not aloud at this time.");
+                        return;
                     }
                 });
                 db.ref(/events/ + $("#event").val() + "/scans/" + user._id).set(numScans);
-                
+
                 // Display result
                 $("#firstName").val(user.name_first);
                 $("#lastName").val(user.name_last);

@@ -110,7 +110,7 @@
                     <h4>Title: </h4>
                 </div>
                 <div class="col-xs-6">
-                    <input class="" id="txtTitle" type="text" placeholder="Title"/>
+                    <input class="" id="txtTitle" type="text" placeholder="Title" />
                 </div>
             </div>
 
@@ -129,7 +129,7 @@
                     <h4>Location: </h4>
                 </div>
                 <div class="col-xs-6">
-                    <input class="" id="txtLocation" type="text" placeholder="Location"/>
+                    <input class="" id="txtLocation" type="text" placeholder="Location" />
                 </div>
             </div>
             <!--Group-->
@@ -140,7 +140,7 @@
                 <div class="col-xs-6">
                     <div id="event-selector">
                         <div class="btn-group">
-                            <select id="groups" class="dropdown-selector">
+                            <select id="categories" class="dropdown-selector">
                             <option value="event">HackPSU Event</option>
                             <option value="food">Meal or Snack</option>
                             <option value="workshop">Workshop</option>
@@ -156,8 +156,28 @@
                     <h4>Time-Start: </h4>
                 </div>
                 <div class="col-xs-6">
-                    <input class="" id="txtTimeStart" type="text" />
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div for="timeStart">Time:</div>
+                        </div>
+                        <div class="col-xs-4">
+                            <input id="timeStart" type="time" name="startTime" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div for="startDate">Date:</div>
+                        </div>
+                        <div class="col-xs-4">
+                            <input id="startDate" type="date" min="2017-11-04" max="2017-11-05" name="startDate" />
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Spacer -->
+            <div class="row">
+                <div id="status" class="status">&nbsp</div>
             </div>
 
             <!--Time-End-->
@@ -166,7 +186,29 @@
                     <h4>Time-End: </h4>
                 </div>
                 <div class="col-xs-6">
-                    <input class="" id="txtTimeEnd" type="text" />
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div for="timeEnd">Time:</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <input id="timeEnd" type="time" name="timeEnd" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 ">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <div for="dateEnd">Date:</div>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <input id="dateEnd" type="date" min="2017-11-04" max="2017-11-05" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

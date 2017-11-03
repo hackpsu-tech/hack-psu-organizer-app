@@ -1,3 +1,5 @@
+// NOT CALLED
+
 document.addEventListener("deviceready", onDeviceReady, false);
 //*
 var config = {

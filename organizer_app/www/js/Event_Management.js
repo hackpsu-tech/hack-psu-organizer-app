@@ -36,22 +36,22 @@ function onDeviceReady() {
             var db = firebase.database();
             var ids = null;
 
-            // Save all events and load events option box
-            db.ref("/events").once("value").then(function (snapshot) {
-                events = snapshot;
-                for (var event in snapshot) {
-                    $('#events').append($('<option>', {
-                        value: event,
-                        text: event.title
-                    }));
-                }
-            });
-
+            /*            // Save all events and load events option box
+                        db.ref("/events").once("value").then(function (snapshot) {
+                            events = snapshot;
+                            for (var event in snapshot) {
+                                $('#events').append($('<option>', {
+                                    value: event,
+                                    text: event.title
+                                }));
+                            }
+                        });
+            */
             // When user changes event
             $("#events").on("change", function () {
                 // TODO: check for unchanged data (maybe)
                 editing = events[$("#events").val()]
-                
+
                 if (this.value != "") { // new event
                     editing = events[this.value];
                     $('#txtTitle').attr("placeholder", editing.title);
@@ -72,22 +72,26 @@ function onDeviceReady() {
 
 
             $("#sendSubmission").click(function () {
-                // TODO: Validate input (start/end time)
+                // TODO: Validate and parse input (start/end time)
+                var start = 0,
+                    end = 0;
+
                 if ($("#dropdown").val == "") {
                     db.ref("/events/" + guid()).set({
-                        title: $("#events").val(),
-                        description: $("#description").val(),
+                        title: $("#txtTitle").val(),
+                        'time-start': start,
+                        'time-end': end,
                         location: $("#txtLocation").val(),
-                        group: $("#group").val(),
+                        description: $("#txtDescription").val(),
+                        category: $("#categories").val(),
                         multi_entry: $("#radTrue").val()
                     });
-
                 } else {
                     db.ref("/events/" + $("#events").val()).set({
                         title: $("#events").val(),
                         description: $("#description").val(),
                         location: $("#txtLocation").val(),
-                        group: $("#group").val(),
+                        group: $("#groups").val(),
                         multi_entry: $("#radTrue").val()
                     });
                 }
@@ -102,7 +106,7 @@ function onDeviceReady() {
                 $("#txtGroup").val("")
                 $('#txtTimeStart').val("");
                 $("#txtTimeEnd").val("");
-                
+
                 // Reset placeholders
                 $('#txtTitle').attr("val", "");
                 $("#txtDescription").arrt("val", "");
