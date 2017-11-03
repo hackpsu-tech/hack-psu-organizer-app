@@ -26,6 +26,12 @@
     "dependent_plugins": {
         "cordova-plugin-compat": {
             "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
+        },
+        "cordova-plugin-browsertab": {
+            "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
+        },
+        "cordova-plugin-buildinfo": {
+            "PACKAGE_NAME": "io.cordova.hackpsuorganizer"
         }
     }
 }
