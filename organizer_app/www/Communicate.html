@@ -91,56 +91,45 @@
             <span class="Page-title">Communication</span>
         </h1>
     </div>
-    <div class="center">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-2 col-xs-offset-2">
-                    <h3>Title: </h3>
-                </div>
-                <div class="col-xs-6">
-                    <textarea id="txtTitle"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-2 col-xs-offset-2">
-                    <h3>Message: </h3>
-                </div>
-                <div class="col-xs-6">
-                    <textarea id="txtMessage"></textarea>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 col-xs-offset-2">
-                        <button id="takePicture" class="button">Take Photo</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button id="choosePicture" class="button">Choose Photo</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 col-xs-offset-2">
-                        <button id="sendNotification" class="button">Push Notification</button>
-                    </div>
-                    <div class="col-xs-4">
-                        <button id="sendUpdate" class="button">Live Update</button>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-xs-8 col-xs-offset-2">
-                        <button id="sendBoth" class="button">Both</button>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div id="communicate-status" class="status"></div>
-                </div>
-                <div class="row">
-                    <button id="reset" class="button" type="button">Reset</button>
-                </div>
-            </div>
-            <div id="scanner-data">
-            </div>
+    <!--Title-->
+    <div class="row">
+        <div class="col-xs-offset-1">
+            <h4><label class="" for="title">Title</label></h4>
+            <input class="" id="title" name="title" placeholder="Title..." type="text" />
         </div>
+    </div>
+
+    <!--Message-->
+    <div class="row">
+        <div class="col-xs-offset-1">
+            <h4><label class="" for="message">Message</label></h4>
+            <input class="" id="message" name="message" placeholder="Message.." type="text" />
+        </div>
+    </div>
+
+    
+    <!--Picture-->
+    <div class="col-xs-12">
+        <button id="takePicture" class="btn btn-primary btn-lg btn-block button">Take Photo</button>
+    </div>
+    <div class="col-xs-12">
+        <button id="uploadPicture" class="btn btn-primary btn-lg btn-block button">Upload Photo</button>
+    </div>
+
+    <!--Notification-->
+    <footer class="">
+        <div class="col-xs-6">
+            <button id="sendNotification" class="btn btn-primary btn-lg btn-block button">Push Notification</button>
+        </div>
+        <div class="col-xs-6">
+            <button id="sendUpdate" class="btn btn-primary btn-lg btn-block button">Live Update</button>
+        </div>
+
+        <div class="col-xs-12">
+            <button id="sendBoth" class="btn btn-primary btn-lg btn-block button">Push Notification/Live Update</div>
+        </div>
+    </footer>
 </body>
 
 <script src="cordova.js"></script>

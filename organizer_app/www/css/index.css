@@ -110,3 +110,30 @@ tr, td {
 .registration .other{
     visibility: hidden;
 }
+
+input[type=text] {
+  width: 93%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+input[type=halftext] {
+  padding: 6px 30px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
+}
