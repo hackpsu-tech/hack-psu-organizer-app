@@ -40,6 +40,7 @@
 			*.googleapis.com;
 		    img-src *;
             worker-src
+			blob://*
             http://*
             https://*;">
     <meta name="format-detection" content="telephone=no">
@@ -91,11 +92,8 @@
         <center id="content-wrapper">
             <div id="event-selector">
                 <div class="btn-group">
-                    <select class="dropdown-selector">
-                        <option value="test">Add Event</option>
-                        <option value="register">Registration</option>
-                        <option value="other">Anything else</option>
-
+                    <select id="events" class="dropdown-selector">
+                        <option value="">Select an event</option>
                     </select>
                 </div>
             </div>
@@ -131,6 +129,7 @@
                 width: 100%;
                 overflow: hidden;
             }
+
         </style>
 
         <!--First Name-->
@@ -183,7 +182,7 @@
         <!--QR Scan-->
         <footer>
             <div class="col-xs-12">
-                <div id="tracker" class="btn btn-primary btn-lg btn-block button">Scan</div>
+                <div id="scan" class="btn btn-primary btn-lg btn-block button">Scan</div>
             </div>
         </footer>
     </div>

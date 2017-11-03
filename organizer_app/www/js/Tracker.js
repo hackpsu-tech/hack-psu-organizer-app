@@ -1,5 +1,5 @@
 document.addEventListener("deviceready", onDeviceReady, false);
-/*
+//*
 var config = {
     apiKey: "AIzaSyBFluYW_DWuVeaEzCMNFzAaHlVQnK8Qzk8",
     authDomain: "notifications-b01a3.firebaseapp.com",
@@ -7,7 +7,7 @@ var config = {
     projectId: "notifications-b01a3",
     storageBucket: "notifications-b01a3.appspot.com",
     messagingSenderId: "385399873291"
-  };
+};
 /*/
 var config = {
     apiKey: "AIzaSyDiFm_g-RCf3xnO5anJ8Sp8nsRSfYxxdP0",
@@ -20,9 +20,9 @@ var config = {
 //*/
 firebase.initializeApp(config);
 var firstSignIn = true;
-var events;
+var events = new Object;
 var selected;
-
+var scanned;
 
 function onDeviceReady() {
     firebase.auth().signInWithEmailAndPassword("hackpsudev@gmail.com", "hackpsudev2017").catch(function (error) {
@@ -37,25 +37,22 @@ function onDeviceReady() {
             console.log(platform);
             var db = firebase.database();
 
-            /*           // Get events
-            db.ref("/events").once("value").then(function (snapshot) {
-                events = snapshot;
-                for (var event in snapshot) {
-                    $('#events').append($('<option>', {
-                        value: event,
-                        text: event.title
-                    }));
-                }
+            // Save all events and load events option box
+            db.ref("/events").orderByChild("title").on("child_added", function (snapshot) {
+                events[snapshot.key] = snapshot.val();
+                $('#events').append('<option value=' + snapshot.key + '>' + snapshot.val().title + '</option>');
             });
-*/
+            db.ref("/extra-credit").orderByChild("title").on("child_added", function (snapshot) {
+                events[snapshot.key] = snapshot.val();
+                $('#events').append('<option value=' + snapshot.key + '>' + snapshot.val().title + '</option>');
+            });
 
             // TODO: load extra credit box
 
 
             // Prepare QR Scanner
             QRScanner.prepare(function (err, status) {
-                console.log(err);
-                console.log(status);
+                console.log(err ? err : status);
             });
 
             // Reposition the popover if the orientation changes.
@@ -67,51 +64,31 @@ function onDeviceReady() {
 
 
             $("#scan").click(function () {
+                if ($("#events").val() == "") {
+                    alert("An event must be selected in oroder to scan");
+                    return
+                } else if ($("#events").val() === "registration") {
+
+                }
+                //$("#all-content").css('display', 'none');
+
                 $("#all-content").css('display', 'none');
-
-                var user;
-                db.ref(/registered/ + scanIt()).once("value").then(function (snapshot) {
-                    user = snapshot;
-                });
-                if (user == null) {
-                    alert("Fraud alert!");
-                    return;
-                }
-
-                // TODO change `"registration"` to its given UID
-                if ($("#event").val() == "registration") {
-                    db.ref("/registered/" + user._iu + "/attended").set(true);
-                }
-
-                var numScans;
-                db.ref(/events/ + $("#event").val() + "/scans/" + user._id).once("value").then(function (snapshot) {
-                    if (snapshot.val() == null) {
-                        // new guy on the street
-                        numScans = 1;
-                    } else if (selected.multi_entry) {
-                        // returning friend
-                        numScans = snapshot.val() + 1;
-                    } else {
-                        // returning person who was not invited
-                        alert("Re-entry is not aloud at this time.");
-                        return;
-                    }
-                });
-                db.ref(/events/ + $("#event").val() + "/scans/" + user._id).set(numScans);
-
-                // Display result
-                $("#firstName").val(user.name_first);
-                $("#lastName").val(user.name_last);
-                $("#shirtSize").val(user["t-shirt-size"]);
-                $("#timesScanned").val(numScans);
+                scanIt();
             });
 
+            $("#events").on("change", function () {
+                selected = events[$("#events").val()];
+                console.log("Selected: " + JSON.stringify(selected));
+            });
 
             function scanIt() {
-
+                console.log("Scanit");
                 QRScanner.prepare(function (err, status) {
                     console.log(err);
                     console.log(status);
+                    QRScanner.show();
+                    $("body").css("visibility", "hidden");
+                    $("body").css("background-color", "transparent");
                     QRScanner.scan(function (err, text) {
                         if (err) {
                             console.log(err._message);
@@ -148,12 +125,44 @@ function onDeviceReady() {
                             if (platform != "Android") {
                                 $("#all-content").css('display', 'block');
                             }
-                            return text;
+
+                            db.ref(/registered/ + text).once("value").then(function (participant) {
+                                user = participant.val();
+                                if (user == null) {
+                                    alert("Fraud alert!");
+                                    console.log(text);
+                                    QRScanner.hide();
+                                    return;
+                                } else {
+
+                                    // registration's uid is 'registration'
+                                    if ($("#event").val() == "registration") {
+                                        db.ref("/registered/" + user._iu + "/attended").set(true);
+                                    }
+
+                                    var numScans;
+                                    db.ref(/events/ + $("#events").val() + "/scans/" + user._id).once("value").then(function (data) {
+                                        if (data.val() == null) {
+                                            // new guy on the street
+                                            db.ref(/events/ + $("#events").val() + "/scans/" + user._id).set(1);
+                                        } else if (selected["multi-entry"]) {
+                                            // returning friend
+                                            db.ref(/events/ + $("#events").val() + "/scans/" + user._id).set(data.val() + 1);
+                                        } else {
+                                            // returning person who was not invited back
+                                            alert("Re-entry is not aloud at this time.");
+                                        }
+                                        // Display result
+                                        $("#firstName").val(user.name_first);
+                                        $("#lastName").val(user.name_last);
+                                        $("#shirtSize").val(user["shirt_size"]);
+                                        $("#timesScanned").val(numScans);
+                                    });
+                                }
+                            });
                         }
+                        scanned = text;
                     });
-                    QRScanner.show();
-                    $("body").css("visibility", "hidden");
-                    $("body").css("background-color", "transparent");
                 });
             }
 

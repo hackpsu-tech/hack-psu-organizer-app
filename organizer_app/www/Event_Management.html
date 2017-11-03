@@ -40,6 +40,7 @@
 			*.googleapis.com;
 		    img-src *;
             worker-src
+            blob://*
             http://*
             https://*;">
 
@@ -158,10 +159,10 @@
                 <div class="col-xs-6">
                     <div class="row">
                         <div class="col-xs-2">
-                            <div for="timeStart">Time:</div>
+                            <div for="startTime">Time:</div>
                         </div>
                         <div class="col-xs-4">
-                            <input id="timeStart" type="time" name="startTime" />
+                            <input id="startTime" type="time" name="startTime" step="15" />
                         </div>
                     </div>
                     <div class="row">
@@ -183,30 +184,23 @@
             <!--Time-End-->
             <div class="row">
                 <div class="col-xs-4 col-xs-offset-1">
-                    <h4>Time-End: </h4>
+                    <h4>Time-Start: </h4>
                 </div>
                 <div class="col-xs-6">
                     <div class="row">
                         <div class="col-xs-2">
-                            <div for="timeEnd">Time:</div>
+                            <div for="endTime">Time:</div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-2">
-                                <input id="timeEnd" type="time" name="timeEnd" />
-                            </div>
+                        <div class="col-xs-4">
+                            <input id="endTime" type="time" name="startTime" step="15" />
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6 ">
-                        <div class="row">
-                            <div class="col-xs-2">
-                                <div for="dateEnd">Date:</div>
-                            </div>
-
-                            <div class="col-xs-4">
-                                <input id="dateEnd" type="date" min="2017-11-04" max="2017-11-05" />
-                            </div>
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div for="endDate">Date:</div>
+                        </div>
+                        <div class="col-xs-4">
+                            <input id="endDate" type="date" min="2017-11-04" max="2017-11-05" name="startDate" />
                         </div>
                     </div>
                 </div>
@@ -234,7 +228,7 @@
             <!--Submission Button-->
             <div class="row">
                 <div class="col-xs-9 col-xs-offset-2">
-                    <div id="sendSubmission" class="btn btn-primary btn-lg btn-block button">Submit</div>
+                    <div id="submit" class="btn btn-primary btn-lg btn-block button">Submit</div>
                 </div>
             </div>
         </center>
