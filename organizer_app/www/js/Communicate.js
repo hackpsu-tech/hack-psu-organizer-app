@@ -163,7 +163,7 @@ function onDeviceReady() {
         uiResetLockCount = 2;
         var notification = initNotification();
         notification.notification.click_action = "https://hackpsu.org/live";
-        notification.notification.icon = "https://notifications-b01a3.firebaseapp.com/assets/images/hackpsulogo.png";
+        notification.notification.icon = "https://hackpsu.org/assets/images/Website_center.png";
         firebase.auth().currentUser.getIdToken(true)
           .then(function (idToken) {
             if (idToken) {
@@ -229,7 +229,7 @@ function onDeviceReady() {
 
 
       function initNotification() {
-        return {
+        var notification= {
           "notification": {
             "title": $("#txtTitle").val(),
             "body": $("#txtMessage").val(),
@@ -243,6 +243,7 @@ function onDeviceReady() {
             "body": $("#txtMessage").val()
           }
         };
+        return notification;
       }
 
 
