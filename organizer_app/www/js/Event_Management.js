@@ -7,7 +7,7 @@ var config = {
     projectId: "notifications-b01a3",
     storageBucket: "notifications-b01a3.appspot.com",
     messagingSenderId: "385399873291"
-  };
+};
 /*/
 var config = {
     apiKey: "AIzaSyDiFm_g-RCf3xnO5anJ8Sp8nsRSfYxxdP0",
@@ -20,8 +20,8 @@ var config = {
 //*/
 firebase.initializeApp(config);
 var firstSignIn = true;
-var events = new Object();
-
+var events;
+var editing;
 
 function onDeviceReady() {
     firebase.auth().signInWithEmailAndPassword("hackpsudev@gmail.com", "hackpsudev2017").catch(function (error) {
@@ -36,7 +36,8 @@ function onDeviceReady() {
             var db = firebase.database();
             var ids = null;
 
-            db.ref("events").once("value").then(function (snapshot) {
+            // Save all events and load events option box
+            db.ref("/events").once("value").then(function (snapshot) {
                 events = snapshot;
                 for (var event in snapshot) {
                     $('#events').append($('<option>', {
@@ -46,13 +47,81 @@ function onDeviceReady() {
                 }
             });
 
+            // When user changes event
+            $("#events").on("change", function () {
+                // TODO: check for unchanged data (maybe)
+                editing = events[$("#events").val()]
+                
+                if (this.value != "") { // new event
+                    editing = events[this.value];
+                    $('#txtTitle').attr("placeholder", editing.title);
+                    $("#txtDescription").arrt("placeholder", editing.description);
+                    $('#txtLocation').attr("placeholder", editing.location);
+                    //    $('#txtTimeStart').attr("placeholder", editing.time_start);
+                    //    $("#txtTimeENd").arrt("placeholder", editing.time_end);
+
+                } else { // existing event
+                    editing = null;
+                    $('#txtTitle').attr("placeholder", "Title");
+                    $("#txtDescription").arrt("placeholder", "Description");
+                    $('#txtLocation').attr("placeholder", "Location");
+                    //    $('#txtTimeStart').attr("placeholder", editing.time_start);
+                    //    $("#txtTimeENd").arrt("placeholder", editing.time_end);
+                }
+            })
 
 
+            $("#sendSubmission").click(function () {
+                // TODO: Validate input (start/end time)
+                if ($("#dropdown").val == "") {
+                    db.ref("/events/" + guid()).set({
+                        title: $("#events").val(),
+                        description: $("#description").val(),
+                        location: $("#txtLocation").val(),
+                        group: $("#group").val(),
+                        multi_entry: $("#radTrue").val()
+                    });
 
-
-            $("#reset").click(function () {
-                resetNotificationUI(uiResetLockCount);
+                } else {
+                    db.ref("/events/" + $("#events").val()).set({
+                        title: $("#events").val(),
+                        description: $("#description").val(),
+                        location: $("#txtLocation").val(),
+                        group: $("#group").val(),
+                        multi_entry: $("#radTrue").val()
+                    });
+                }
             });
+
+            // Clear all data
+            $("#reset").click(function () {
+                // Reset values
+                $('#txtTitle').val("");
+                $("#txtDescription").val("");
+                $('#txtLocation').val("");
+                $("#txtGroup").val("")
+                $('#txtTimeStart').val("");
+                $("#txtTimeEnd").val("");
+                
+                // Reset placeholders
+                $('#txtTitle').attr("val", "");
+                $("#txtDescription").arrt("val", "");
+                $('#txtLocation').attr("val", "");
+                $("#txtGroup").arrt("val", "");
+                $('#txtTimeStart').attr("val", "");
+                $("#txtTimeENd").arrt("val", "");
+            });
+
+            function guid() {
+                function s4() {
+                    return Math.floor((1 + Math.random()) * 0x10000)
+                        .toString(16)
+                        .substring(1);
+                }
+
+                return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+                    s4() + '-' + s4() + s4() + s4();
+            }
 
             // Reposition the popover if the orientation changes.
             window.onorientationchange = function () {
