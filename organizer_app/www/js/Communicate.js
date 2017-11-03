@@ -44,38 +44,32 @@ function onDeviceReady() {
             var sendPush = false;
             var sendMeUpdate = false;
             var uiResetLockCount = 0;
-            var goHomeOnBack = false;
-            document.addEventListener("backbutton", function () {
-                if (goHomeOnBack) {
-                    QRScanner.hide();
-                    returnHome();
-                    goHomeOnBack = false;
-                } else {
-                    navigator.app.exitApp();
-                }
-                console.log("back button pressed");
-            }, false);
+
 
             $("#sendNotification").click(function () {
-                navigator.notification.confirm(
-                    "Sending push notification...\n" + getConfirmMessage(),
-                    function (confirmIndex) {
-                        if (confirmIndex != 1) {
-                            return
-                        }
-                        pushNotification();
-                        alert("Push notification sent");
-                    },
-                    'Confirm Send', // title
-          ['Confirm', 'Cancel'] // options
-                );
+                if ($("#txtTitle").val() == "" || $("#txtMessage").val() == "") {
+                    alert("You are required to have a title and a description. Nothing sent");
+                } else {
+                    navigator.notification.confirm(
+                        "Sending push notification...\n" + getConfirmMessage(),
+                        function (confirmIndex) {
+                            if (confirmIndex != 1) {
+                                return
+                            }
+                            pushNotification();
+                            alert("Push notification sent");
+                        },
+                        'Confirm Send', // title
+                        ['Confirm', 'Cancel'] // options
+                    );
+                }
             });
 
             $("#sendUpdate").click(function () {
                 // Validate -> update #communicate-status text on error
-                if (sendMeUpdate && selectedImage == null) {
+                if (selectedImage == null) {
                     alert("You are required to have an image with a live update. Nothing sent");
-                } else if ($("#communicate-txtTitle").val() == "" || $("#communicate-txtMessage").val() == "") {
+                } else if ($("#txtTitle").val() == "" || $("#txtMessage").val() == "") {
                     alert("You are required to have a title and a description. Nothing sent");
                 } else {
                     navigator.notification.confirm(
@@ -87,7 +81,7 @@ function onDeviceReady() {
                             sendUpdate();
                         },
                         'Confirm Send', // title
-            ['Confirm', 'Cancel']
+                        ['Confirm', 'Cancel']
                     );
                 }
             });
@@ -95,7 +89,7 @@ function onDeviceReady() {
             $("#sendBoth").click(function () {
                 if (selectedImage == null) {
                     alert("You are required to have an image with a live update. Nothing sent");
-                } else if ($("#communicate-txtTitle").val() == "" || $("#communicate-txtMessage").val() == "") {
+                } else if ($("#txtTitle").val() == "" || $("#txtMessage").val() == "") {
                     alert("You are required to have a title and a description. Nothing sent");
                 } else {
                     navigator.notification.confirm(
@@ -108,39 +102,30 @@ function onDeviceReady() {
                             pushNotification();
                         },
                         'Confirm Send', // title
-            ['Confirm', 'Cancel']
+                        ['Confirm', 'Cancel']
                     );
                 }
             });
 
             $("#reset").click(function () {
-                resetNotificationUI(uiResetLockCount);
-                resetImageURL(imageUrl);
-                resetTitle("");
-                resetMsg("");
+                resetUI(uiResetLockCount);
             });
 
 
 
             function getConfirmMessage() {
                 var message = "";
-                message += "Title: " + $("#titleInput").val() + "\n";
-                message += "Body: " + $("#bodyInput").val();
+                message += "Title: " + $("#txtTitle").val() + "\n";
+                message += "Body: " + $("#txtMessage").val();
 
                 return message;
             }
 
-            function resetNotificationUI(resetLockCount) {
+            function resetUI(resetLockCount) {
                 if (resetLockCount == 0) {
                     clearActiveButton();
-                    $("#titleInput").val("");
-                    $("#bodyInput").val("");
-                    if (sendMeUpdate) {
-                        $("#enableUpdate").click();
-                    }
-                    if (sendPush) {
-                        $("#enableNotification").click();
-                    }
+                    $("#txtTitle").val("");
+                    $("#txtMessage").val("");
                     selectedImage = null;
                 }
             }
@@ -165,12 +150,12 @@ function onDeviceReady() {
                                 data: JSON.stringify(notification),
                                 success: function () {
                                     uiResetLockCount--;
-                                    resetNotificationUI(uiResetLockCount);
+                                    resetUI(uiResetLockCount);
                                 },
                                 error: function (error) {
                                     uiResetLockCount--;
                                     alert("Error getting registered id's for desktop: " + error);
-                                    resetNotificationUI(uiResetLockCount);
+                                    resetUI(uiResetLockCount);
                                     console.log(error);
                                 }
                             });
@@ -185,7 +170,7 @@ function onDeviceReady() {
                 if (db && firebase && selectedImage != null) {
                     var storageRef = firebase.storage().ref();
                     var uuid = guid();
-                    var newUpload = storageRef.child($("#titleInput").val() + '-' + uuid + '.jpg');
+                    var newUpload = storageRef.child($("#txtTitle").val() + '-' + uuid + '.jpg');
 
                     selectedImage = selectedImage.replace(/\s/g, '');
                     var uploadTask = newUpload.putString(selectedImage, 'base64', {
@@ -202,12 +187,12 @@ function onDeviceReady() {
                         var newUpdate = updates.push();
                         newUpdate.set({
                             "date": Date.now(),
-                            "title": $("#titleInput").val(),
-                            "body": $("#bodyInput").val(),
+                            "title": $("#txtTitle").val(),
+                            "body": $("#txtMessage").val(),
                             "url": imageUrl
                         });
                         alert("Update sent");
-                        resetNotificationUI(uiResetLockCount);
+                        resetUI(uiResetLockCount);
                     });
                 }
             }
@@ -216,16 +201,16 @@ function onDeviceReady() {
             function initNotification() {
                 var notification = {
                     "notification": {
-                        "title": $("#titleInput").val(),
-                        "body": $("#bodyInput").val(),
+                        "title": $("#txtTitle").val(),
+                        "body": $("#txtMessage").val(),
                         "sound": "default",
                         "click_action": null,
                         "icon": null
                     },
                     "priority": "high",
                     "data": {
-                        "title": $("#titleInput").val(),
-                        "body": $("#bodyInput").val()
+                        "title": $("#txtTitle").val(),
+                        "body": $("#txtMessage").val()
                     }
                 };
                 return notification;

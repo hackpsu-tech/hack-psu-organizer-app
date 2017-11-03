@@ -30,11 +30,10 @@
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
     <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval'
-			https://api.mlab.com
 			https://fcm.googleapis.com/fcm/send
 			*.gstatic.com
 			*.firebaseio.com
-			blob:*
+			blob://*
             gap://*;
 		    style-src 'self' 'unsafe-inline'
 			*.googleapis.com;
@@ -88,7 +87,7 @@
                     <h3>Title: </h3>
                 </div>
                 <div class="col-xs-6">
-                    <textarea id="communicate-txtTitle"></textarea>
+                    <textarea id="txtTitle"></textarea>
                 </div>
             </div>
             <div class="row">
@@ -96,9 +95,8 @@
                     <h3>Message: </h3>
                 </div>
                 <div class="col-xs-6">
-                    <textarea id="communicate-txtMessage"></textarea>
+                    <textarea id="txtMessage"></textarea>
                 </div>
-            </div>
             <div class="row">
                 <div class="col-xs-4 col-xs-offset-2">
                     <button id="takePicture" class="button">Take Photo</button>

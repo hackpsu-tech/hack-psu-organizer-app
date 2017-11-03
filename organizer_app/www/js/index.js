@@ -49,14 +49,8 @@ function onDeviceReady() {
             var uiResetLockCount = 0;
             var goHomeOnBack = false;
             document.addEventListener("backbutton", function () {
-                if (goHomeOnBack) {
-                    QRScanner.hide();
-                    returnHome();
-                    goHomeOnBack = false;
-                } else {
-                    navigator.app.exitApp();
-                }
                 console.log("back button pressed");
+                navigator.app.exitApp();
             }, false);
 
             $("#sendNotification").click(function () {

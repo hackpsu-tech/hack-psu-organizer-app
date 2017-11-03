@@ -50,12 +50,13 @@
     <script src="js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/Pages.css">
     <link rel="stylesheet" type="text/css" href="css/Side-Nav.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-storage.js"></script>
-    <script src="js/Communication.js"></script>
+    <script src="js/Tracker.js"></script>
     <script src="js/Side-Nav.js"></script>
     <title>HackPSU QR Tracker</title>
 </head>
@@ -67,10 +68,18 @@
         </div>
         <div id="side-nav-content">
             <ul>
-                <a href="index.html"><li class="nav-link"><span>Home</span></li></a>
-                <a class="active" href="Tracker.html"><li class="nav-link-active"><span>Tracker</span></li></a>
-                <a href="Communicate.html"><li class="nav-link"><span>Communicate</span></li></a>
-                <a href="Event_Management.html"><li class="nav-link" ><span>Event Management</span></li></a>
+                <a href="index.html">
+                    <li class="nav-link"><span>Home</span></li>
+                </a>
+                <a class="active" href="Tracker.html">
+                    <li class="nav-link-active"><span>Tracker</span></li>
+                </a>
+                <a href="Communicate.html">
+                    <li class="nav-link"><span>Communicate</span></li>
+                </a>
+                <a href="Event_Management.html">
+                    <li class="nav-link"><span>Event Management</span></li>
+                </a>
             </ul>
         </div>
     </div>
@@ -82,16 +91,14 @@
         <center id="content-wrapper">
             <div id="event-selector">
                 <div class="btn-group">
-                    <select onfocus='this.size=10;' onblur='this.size=1' onchange='this.size=1; this.blur();'  class="dropdown-selector">
-                        <option value="test">Test</option>
-                        <option>1</option>
-                        <option> sdafadsfsagasgatgjwhlk aaeklfseja iofwajfsl </option>
-                        <option></option>
-                        <option>2</option>
-                        <option>dfasdfkljglkdfhjsaldfhsadjklfsdfklasdjflsakdfjsadklf></option>
+                    <select class="dropdown-selector">
+                        <option value="test">Add Event</option>
 
                     </select>
                 </div>
+            </div>
+            <div class="row">
+                <div id="tracker" class="col-xs-6 offset-xs-3 button">Scan</div>
             </div>
         </center>
 

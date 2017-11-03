@@ -1,5 +1,5 @@
 document.addEventListener("deviceready", onDeviceReady, false);
-/*
+//*
 var config = {
     apiKey: "AIzaSyBFluYW_DWuVeaEzCMNFzAaHlVQnK8Qzk8",
     authDomain: "notifications-b01a3.firebaseapp.com",
@@ -20,8 +20,7 @@ var config = {
 //*/
 firebase.initializeApp(config);
 var firstSignIn = true;
-var cmpen362SignIn = false;
-var cmpen362SignOut = false;
+var events = new Object();
 
 
 function onDeviceReady() {
@@ -35,28 +34,19 @@ function onDeviceReady() {
             var platform = device.platform;
             console.log(platform);
             var db = firebase.database();
-            var selectedImage = null;
-            var imageUrl = null;
             var ids = null;
 
-            QRScanner.prepare(function (err, status) {
-                console.log(err);
-                console.log(status);
-            });
-            var sendPush = false;
-            var sendUpdate = false;
-            var uiResetLockCount = 0;
-            var goHomeOnBack = false;
-            document.addEventListener("backbutton", function () {
-                if (goHomeOnBack) {
-                    QRScanner.hide();
-                    returnHome();
-                    goHomeOnBack = false;
-                } else {
-                    navigator.app.exitApp();
+            db.ref("events").once("value").then(function (snapshot) {
+                events = snapshot;
+                for (var event in snapshot) {
+                    $('#events').append($('<option>', {
+                        value: event,
+                        text: event.title
+                    }));
                 }
-                console.log("back button pressed");
-            }, false);
+            });
+
+
 
 
 

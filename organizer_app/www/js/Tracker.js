@@ -35,26 +35,18 @@ function onDeviceReady() {
             var platform = device.platform;
             console.log(platform);
             var db = firebase.database();
-            var selectedImage = null;
-            var imageUrl = null;
             var ids = null;
 
+            db.ref('events').on("values").then(function (snapshot) {
+                for (let event in snapshot) {
+                    $("events").append($("<option></option>").attr("value", event).text(event.title));
+                }
+            });
             QRScanner.prepare(function (err, status) {
                 console.log(err);
                 console.log(status);
             });
             var uiResetLockCount = 0;
-            var goHomeOnBack = false;
-            document.addEventListener("backbutton", function () {
-                if (goHomeOnBack) {
-                    QRScanner.hide();
-                    returnHome();
-                    goHomeOnBack = false;
-                } else {
-                    navigator.app.exitApp();
-                }
-                console.log("back button pressed");
-            }, false);
 
             $("#reset").click(function () {
                 resetNotificationUI(uiResetLockCount);
