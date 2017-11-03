@@ -96,9 +96,7 @@
         <div id="event-selector">
             <div class="btn-group">
                 <select id="events" class="dropdown-selector" onchange="visibleSection(this);">
-                    <option value="">Select Event</option>
-                    <option value="e-0-00">Registration</option>
-                    <option value="other">Other</option>
+                    <option value="nothing">Select Event</option>
                 </select>
             </div>
         </div>
@@ -169,18 +167,18 @@
 
     <script>
         function visibleSection(that){
-            if (that.value == "e-0-00") {
+            if (that.value == "registration") {
                 document.getElementById("shirtSize").style.display = "block";
                 document.getElementById("extraCredit").style.display = "block";
 
                 document.getElementById("timesScanned").style.display = "none";
-            } else if (that.value == "other"){
-                document.getElementById("timesScanned").style.display = "block";
-
+            } else if (that.value == "nothing"){
+                document.getElementById("timesScanned").style.display = "none";
                 document.getElementById("shirtSize").style.display = "none";
                 document.getElementById("extraCredit").style.display = "none";
             } else {
-                document.getElementById("timesScanned").style.display = "none";
+                document.getElementById("timesScanned").style.display = "block";
+
                 document.getElementById("shirtSize").style.display = "none";
                 document.getElementById("extraCredit").style.display = "none";
             }
