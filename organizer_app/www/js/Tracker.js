@@ -20,8 +20,9 @@ var config = {
 //*/
 firebase.initializeApp(config);
 var firstSignIn = true;
-var cmpen362SignIn = false;
-var cmpen362SignOut = false;
+var events;
+var selected;
+
 
 function onDeviceReady() {
     firebase.auth().signInWithEmailAndPassword("hackpsudev@gmail.com", "hackpsudev2017").catch(function (error) {
@@ -35,22 +36,22 @@ function onDeviceReady() {
             var platform = device.platform;
             console.log(platform);
             var db = firebase.database();
-            var ids = null;
 
-            db.ref('events').on("values").then(function (snapshot) {
-                for (let event in snapshot) {
-                    $("events").append($("<option></option>").attr("value", event).text(event.title));
+            db.ref("/events").once("value").then(function (snapshot) {
+                events = snapshot;
+                for (var event in snapshot) {
+                    $('#events').append($('<option>', {
+                        value: event,
+                        text: event.title
+                    }));
                 }
             });
+
             QRScanner.prepare(function (err, status) {
                 console.log(err);
                 console.log(status);
             });
             var uiResetLockCount = 0;
-
-            $("#reset").click(function () {
-                resetNotificationUI(uiResetLockCount);
-            });
 
             // Reposition the popover if the orientation changes.
             window.onorientationchange = function () {
@@ -64,7 +65,13 @@ function onDeviceReady() {
                 scanIt(2);
             });
 
-            function scanIt(use) {
+
+            $("#reset").click(function () {
+                resetNotificationUI(uiResetLockCount);
+            });
+
+            function scanIt() {
+
                 QRScanner.prepare(function (err, status) {
                     console.log(err);
                     console.log(status);
@@ -125,10 +132,9 @@ function onDeviceReady() {
                     goHomeOnBack = true;
                 });
             }
-
             // gets data from firebase
             function dataCheck(qrId) {
-                db.ref("/registered-hackers/" + qrId).once("value").then(function (snapshot) {
+                db.ref("/registered/" + qrId).once("value").then(function (snapshot) {
                     if (snapshot != null) {
                         render(snapshot.val());
                     }
@@ -139,14 +145,9 @@ function onDeviceReady() {
             function logicCheck(data) {
                 if (!data) {
                     return 0;
-                } else if (data.rsvp === false) {
-                    return 1;
                 } else if (data.got_shirt === true) {
-                    return 2;
-                } else if (data.rsvp === true && data.got_shirt === false) {
-                    registerPost(data._id);
-                    return 3;
-                } else return 4;
+                    return 1;
+                } else return 2;
             }
 
             // interacts with div
