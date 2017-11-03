@@ -93,6 +93,8 @@
                 <div class="btn-group">
                     <select class="dropdown-selector">
                         <option value="test">Add Event</option>
+                        <option value="register">Registration</option>
+                        <option value="other">Anything else</option>
 
                     </select>
                 </div>
@@ -103,75 +105,80 @@
         </div>
 
         <style>
-        input[type=text]{
-            width: 93%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 2px;
-            box-sizing: border-box;
+            input[type=text] {
+                width: 93%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 2px;
+                box-sizing: border-box;
             }
-        input[type=halftext]{
-            padding: 6px 30px;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 2px;
-            box-sizing: border-box;
-        }
-        footer {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 100px;
-            width: 100%;
-            overflow:hidden;
-        }
-        
+
+            input[type=halftext] {
+                padding: 6px 30px;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 2px;
+                box-sizing: border-box;
+            }
+
+            footer {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 100px;
+                width: 100%;
+                overflow: hidden;
+            }
+
         </style>
 
         <!--First Name-->
         <div class="col-xs-offset-1">
             <label class="" for="firstName">First Name</label>
-            <input class="" id="firstName" name="firstName" type="text"/>
+            <input class="" id="firstName" name="firstName" type="text" />
         </div>
 
         <!--Last Name-->
         <div class="col-xs-offset-1">
             <label class="" for="lastName">Last Name</label>
-            <input class="" id="lastName" name="firstName" type="text"/>
+            <input class="" id="lastName" name="firstName" type="text" />
         </div>
-        
-        <!--Shirt Size-->
-        <div class="col-xs-offset-1">
-            <label class="" for="shirtSize">Shirt Size</label>
-            <input class="" id="shirtSize" name="shirtSize" type="text"/>
-        </div>
+        <div class="registration">
+            <!--Shirt Size-->
+            <div class="col-xs-offset-1">
+                <label class="" for="shirtSize">Shirt Size</label>
+                <input class="" id="shirtSize" name="shirtSize" type="text" />
+            </div>
 
-        <div class="row">
-            <div id="manager-status" class="status">&nbsp</div>
-        </div>
+            <div class="row">
+                <div id="status" class="status">&nbsp</div>
+            </div>
 
-        <!--Extra Credit-->
-        <div class="col-xs-offset-1">
-            <label class="" for="extraCredit">Extra Credit</label>
-            <div id="event-selector">
-                <div class="btn-group">
-                    <select id="extra-credit" class="dropdown-selector">
+            <!--Extra Credit-->
+            <div class="col-xs-offset-1">
+                <label class="" for="extraCredit">Extra Credit</label>
+                <div id="event-selector">
+                    <div class="btn-group">
+                        <select id="extra-credit" class="dropdown-selector">
                         <option value="">Select Group for Credit</option>
+
                     </select>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div id="manager-status" class="status">&nbsp</div>
-        </div>
-
-        <!--Number of Time Scanned-->
-        <div class="col-xs-offset-1">
-            <label class="" for="shirtSize">Times Scanned: </label>
-            <input class="" id="shirtSize" name="shirtSize" type="halftext"/>
+        <div class="other">
+            <div class="row">
+                <div id="status" class="status">&nbsp</div>
+            </div>
+            <!--Number of Time Scanned-->
+            <div class="col-xs-offset-1">
+                <label class="" for="timesScanned">Times Scanned: </label>
+                <input class="" id="timesScanned" name="timesScanned" type="halftext" />
+            </div>
         </div>
 
         <!--QR Scan-->

@@ -106,3 +106,7 @@ tr, td {
   margin-bottom: 3%;
   
 }
+
+.registration .other{
+    visibility: hidden;
+}

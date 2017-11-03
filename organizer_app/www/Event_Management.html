@@ -103,73 +103,85 @@
             <div class="row">
                 <div id="status" class="status">&nbsp</div>
             </div>
-            
+
             <!--Title-->
-            <div class="col-xs-4 col-xs-offset-1">
-                <h4>Title: </h4>
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-1">
+                    <h4>Title: </h4>
+                </div>
+                <div class="col-xs-6">
+                    <input class="" id="txtTitle" type="text" placeholder="Title"/>
+                </div>
             </div>
-            <div class="col-xs-6">
-                <textarea id="txtTitle" placeholder="title"></textarea>
-            </div>
-            
+
             <!--Description-->
-            <div class="col-xs-4 col-xs-offset-1">
-                <h4>Description: </h4>
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-1">
+                    <h4>Description: </h4>
+                </div>
+                <div class="col-xs-6">
+                    <textarea id="txtDescription" placeholder="Description" rows=6 cols=22></textarea>
+                </div>
             </div>
-            <div class="col-xs-6">
-                <textarea id="txtDescription"></textarea>
-            </div>
-            
             <!--Location-->
-            <div class="col-xs-4 col-xs-offset-1">
-                <h4>Location: </h4>
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-1">
+                    <h4>Location: </h4>
+                </div>
+                <div class="col-xs-6">
+                    <input class="" id="txtLocation" type="text" placeholder="Location"/>
+                </div>
             </div>
-            <div class="col-xs-6">
-                <textarea id="txtLocation"></textarea>
-            </div>
-            
             <!--Group-->
-            <div class="col-xs-4 col-xs-offset-1">
-                <h4>Group: </h4>
-            </div>
-            <div class="col-xs-6">
-                <div id="event-selector">
-                    <div class="btn-group">
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-1">
+                    <h4>Group: </h4>
+                </div>
+                <div class="col-xs-6">
+                    <div id="event-selector">
+                        <div class="btn-group">
                             <select id="groups" class="dropdown-selector">
                             <option value="event">HackPSU Event</option>
                             <option value="food">Meal or Snack</option>
                             <option value="workshop">Workshop</option>
                             <option value="mini">Mini-Event</option>
                         </select>
+                        </div>
                     </div>
                 </div>
             </div>
-            
             <!--Time-Start-->
-            <div class="col-xs-4 col-xs-offset-1">
-                <h4>Time-Start: </h4>
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-1">
+                    <h4>Time-Start: </h4>
+                </div>
+                <div class="col-xs-6">
+                    <input class="" id="txtTimeStart" type="text" />
+                </div>
             </div>
-            <div class="col-xs-6">
-                <textarea id="txtTimeStart"></textarea>
-            </div>
+
             <!--Time-End-->
-            <div class="col-xs-4 col-xs-offset-1">
-                <h4>Time-End: </h4>
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-1">
+                    <h4>Time-End: </h4>
+                </div>
+                <div class="col-xs-6">
+                    <input class="" id="txtTimeEnd" type="text" />
+                </div>
             </div>
-            <div class="col-xs-6">
-                <textarea id="txtTimeEnd"></textarea>
-            </div>
-            
+
             <!--Multi-Entry-->
-            <div class="col-xs-4 col-xs-offset-1">
-                <h4>Multi-Entry: </h4>
-            </div>
-            <div class="col-xs-6">
-                <div id="manager-status" class="status">&nbsp</div>
-                <form>
-                    <input id="radTrue" type="radio" name="multi-entry"> True
-                    <input id="radFalse" type="radio" name="multi-entry"> False
-                </form>
+            <div class="row">
+                <div class="col-xs-4 col-xs-offset-1">
+                    <h4>Multi-Entry: </h4>
+                </div>
+                <div class="col-xs-6">
+                    <div id="manager-status" class="status">&nbsp</div>
+                    <form>
+                        <input id="radTrue" type="radio" name="multi-entry"> True &nbsp&nbsp
+                        <input id="radFalse" type="radio" name="multi-entry"> False
+                    </form>
+                </div>
             </div>
             <div class="row">
                 <div id="manager-status" class="status">&nbsp</div>
