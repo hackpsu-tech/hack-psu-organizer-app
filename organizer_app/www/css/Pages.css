@@ -3,21 +3,19 @@
 	vertical-align: middle;
 	font-weight: bold;
 	font-size: 24px;
-	margin-right:37%;
-	margin-left:35%; /*the math can be readjusted later*/
 	display: inline-block;
 	white-space:nowrap
 }
 
 .menu-icon{
 	margin-left: -40px;
-	width: 33px;
+	width: 40px;
 	float: left;
-	border-radius: 5px;
+	/*border-radius: 5px;
 	border-style: solid;
 	color: white;
 	border-color: #173753;
-	background: #173753;
+	background: #173753;*/
 
 }
 
@@ -40,7 +38,7 @@ div#header{
 
 .dropdown-selector{
 	width: 300px;
-	max-width: 500px;
+	max-width: 60%;
 	max-height: 400px;
 	overflow-x: hidden;
 }
