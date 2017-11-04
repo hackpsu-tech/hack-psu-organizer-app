@@ -151,10 +151,14 @@ function onDeviceReady() {
                                             // returning person who was not invited back
                                             alert("Re-entry is not aloud at this time.");
                                         }
+                                        //alert
+                                        alert("first name: " +  user.name_first + "\nlast name: "+ user.name_last + "\nShirt Size: " + user.shirt_size);
+
+
                                         // Display result
                                         $("#firstName").val(user.name_first);
                                         $("#lastName").val(user.name_last);
-                                        $("#shirtSize").val(user["shirt_size"]);
+                                        $("#shirtSize").val(user.shirt_size);
                                         $("#timesScanned").val(numScans);
                                     });
                                 }
