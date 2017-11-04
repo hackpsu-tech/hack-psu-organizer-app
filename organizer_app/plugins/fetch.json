@@ -1,58 +1,103 @@
 {
-    "cordova-plugin-whitelist": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-whitelist@1"
-        },
-        "is_top_level": true,
-        "variables": {}
+  "cordova-plugin-whitelist": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-whitelist@1"
     },
-    "cordova-plugin-dialogs": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-dialogs"
-        },
-        "is_top_level": true,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-dialogs": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-dialogs"
     },
-    "cordova-plugin-qrscanner": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-qrscanner"
-        },
-        "is_top_level": true,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-qrscanner": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-qrscanner"
     },
-    "cordova-plugin-compat": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-compat"
-        },
-        "is_top_level": false,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-swift-support": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-swift-support"
     },
-    "cordova-plugin-swift-support": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-swift-support"
-        },
-        "is_top_level": false,
-        "variables": {}
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-camera": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-camera"
     },
-    "cordova-plugin-camera": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-camera"
-        },
-        "is_top_level": true,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-device": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-device"
     },
-    "cordova-plugin-device": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-device"
-        },
-        "is_top_level": true,
-        "variables": {}
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-browsertab": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-browsertab@^0.2.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-buildinfo": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-buildinfo@~2.0.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-customurlscheme": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-customurlscheme@^4.3.0"
+    },
+    "is_top_level": true,
+    "variables": {
+      "URL_SCHEME": "io.cordova.hackpsuorganizer",
+      "ANDROID_SCHEME": " ",
+      "ANDROID_HOST": " ",
+      "ANDROID_PATHPREFIX": "/"
     }
+  },
+  "cordova-plugin-inappbrowser": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-inappbrowser@^1.7.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-universal-links-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-universal-links-plugin@^1.2.1"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-compat": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-compat@1.2.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  }
 }

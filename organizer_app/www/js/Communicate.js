@@ -169,7 +169,7 @@ function onDeviceReady() {
                         if (idToken) {
                             var token = idToken;
                             $.ajax({
-                                url: 'https://us-central1-notificationtest-49e79.cloudfunctions.net/sendmessage', //TODO: Change URL on Prod
+                                url: 'https://us-central1-notifications-b01a3.cloudfunctions.net/sendmessage', //TODO: Change URL on Prod
                                 type: "POST",
                                 processData: false,
                                 beforeSend: function (xhr) {

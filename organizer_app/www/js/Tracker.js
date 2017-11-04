@@ -128,6 +128,7 @@ function onDeviceReady() {
 
                             db.ref(/registered/ + text).once("value").then(function (participant) {
                                 user = participant.val();
+                                console.log(user);
                                 if (user == null) {
                                     alert("Fraud alert!");
                                     console.log(text);
@@ -137,7 +138,7 @@ function onDeviceReady() {
 
                                     // registration's uid is 'registration'
                                     if ($("#event").val() == "registration") {
-                                        db.ref("/registered/" + user._iu + "/attended").set(true);
+                                        db.ref("/registered/" + user._id + "/attended").set(true);
                                     }
 
                                     var numScans;

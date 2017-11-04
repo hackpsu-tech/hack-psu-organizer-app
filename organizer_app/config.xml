@@ -45,11 +45,10 @@
     </platform>
     <preference name="SplashScreen" value="splash" />
     <preference name="SplashScreenDelay" value="1000" />
-    <engine name="android" spec="^6.3.0" />
     <engine name="browser" spec="^5.0.1" />
+    <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
-    <plugin name="cordova-plugin-buildinfo" spec="~2.0.1" />
-    <plugin name="cordova-plugin-compat" spec="^1.2.0" />
+    <plugin name="cordova-plugin-buildinfo" spec="^2.0.1" />
     <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
         <variable name="URL_SCHEME" value="io.cordova.hackpsuorganizer" />
         <variable name="ANDROID_SCHEME" value=" " />
@@ -61,4 +60,5 @@
     <plugin name="cordova-plugin-qrscanner" spec="^2.5.0" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
+    <plugin name="cordova-plugin-compat" spec="^1.2.0" />
 </widget>
