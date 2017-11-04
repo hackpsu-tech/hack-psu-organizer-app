@@ -91,18 +91,21 @@
             <center><span class="Page-title">Communication</span></center>
         </h1>
     </div>
+    <div id="manager-status" class="status">&nbsp</div>
+
+
 
     <!--Title-->
     <div class="col-xs-offset-1">
-        <h4><label class="" for="title">Title</label></h4>
-        <input class="" id="txtTitle" name="title" placeholder="Title..." type="text" />
+        <label class="" for="txtTitle">Title &nbsp &nbsp </label>
+        <input class="" id="txtTitle" name="title" placeholder="Enter Title" type="text" />
     </div>
 
 
     <!--Message-->
     <div class="col-xs-offset-1">
-        <h4><label class="" for="message">Message</label></h4>
-        <input class="" id="txtMessage" name="message" placeholder="Message.." type="text" />
+        <label class="" for="message">Message</label>
+        <input class="" id="txtMessage" name="message" placeholder="Enter Message" type="text" />
     </div>
 
 
@@ -110,24 +113,36 @@
 
 
     <!--Picture-->
-    <div class="col-xs-12">
+    <div class="col-xs-10 col-xs-offset-1">
         <button id="takePicture" class="btn btn-primary btn-lg btn-block button">Take Photo</button>
     </div>
 
-    <div class="col-xs-12">
+    <div class="col-xs-10 col-xs-offset-1">
         <button id="uploadPicture" class="btn btn-primary btn-lg btn-block button">Upload Photo</button>
     </div>
 
     <!--Notification-->
+    <style>
+        footer {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 150px;
+            width: 100%;
+            overflow: hidden;
+        }
+    </style>
+
+
     <footer class="">
-        <div class="col-xs-6">
-            <button id="sendNotification" class="btn btn-primary btn-lg btn-block button">Push Notification</button>
+        <div class="col-xs-5 col-xs-offset-1">
+            <button id="sendNotification" class="btn btn-primary btn-lg btn-block button">Notify</button>
         </div>
-        <div class="col-xs-6">
+        <div class="col-xs-5">
             <button id="sendUpdate" class="btn btn-primary btn-lg btn-block button">Live Update</button>
         </div>
-        <div class="col-xs-12">
-            <button id="sendBoth" class="btn btn-primary btn-lg btn-block button">Push Notification/Live Update</div>
+        <div class="col-xs-10 col-xs-offset-1">
+            <button id="sendBoth" class="btn btn-primary btn-lg btn-block button">Notify/Live Update</div>
         </div>
     </footer>
 </body>

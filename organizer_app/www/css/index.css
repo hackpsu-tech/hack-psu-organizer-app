@@ -104,7 +104,7 @@ tr, td {
 }
 
 input[type=text] {
-  width: 89%;
+  width: 90%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -125,7 +125,44 @@ footer {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 150px;
+  height: 100px;
   width: 100%;
   overflow: hidden;
+}
+
+.group {
+  width:40%;
+  margin-left:9%;
+  float: left;
+}
+
+.btn-grouplist {
+  width: 42%;
+  float: left;
+}
+
+.clearfix {
+  clear: both
+}
+
+.section-time1 {
+  width:40%;
+  margin-left:15%;
+  float: left;
+}
+
+.section-time2 {
+  width: 42%
+  float: left;
+}
+
+.section1 {
+  width:40%;
+  margin-left:9%;
+  float: left;
+}
+
+.section2 {
+  width: 42%;
+  float: left;
 }
