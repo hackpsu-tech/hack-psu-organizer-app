@@ -166,3 +166,11 @@ footer {
   width: 42%;
   float: left;
 }
+
+textarea .valid {
+  color: green
+}
+
+textarea .invalid {
+  color: red
+}

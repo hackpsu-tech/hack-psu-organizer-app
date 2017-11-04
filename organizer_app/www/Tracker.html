@@ -98,6 +98,7 @@
             <div class="btn-group">
                 <select id="events" class="dropdown-selector" onchange="visibleSection(this);">
                     <option value="nothing">Select Event</option>
+                    <option value="registration">asdf</option>
                 </select>
             </div>
         </div>
@@ -138,8 +139,9 @@
             <label class="" for="extraCredit">Extra Credit</label>
             <div class="col-xs--1">
                 <select id="extra-credit" class="dropdown-selector">
-                    <option value="">Select Course for Credit</option>
+                    <option value="course">Select Course for Credit</option>
                 </select>
+                <textarea class="value" id="extraCredit" name="extraCredit" maxlength="12" rows="1" type="textCredit" pattern="^[0-9]{9}\d$" required/></textarea>
             </div>
         </div>
     </div>

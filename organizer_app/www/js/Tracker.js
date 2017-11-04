@@ -38,7 +38,7 @@ function onDeviceReady() {
             var db = firebase.database();
 
             // Save all events and load events option box
-            db.ref("/events").orderByChild("title").on("child_added", function (snapshot) {
+            db.ref("/events").orderByChild("start_time").on("child_added", function (snapshot) {
                 events[snapshot.key] = snapshot.val();
                 $('#events').append('<option value=' + snapshot.key + '>' + snapshot.val().title + '</option>');
             });
@@ -66,9 +66,7 @@ function onDeviceReady() {
             $("#scan").click(function () {
                 if ($("#events").val() == "") {
                     alert("An event must be selected in oroder to scan");
-                    return
-                } else if ($("#events").val() === "registration") {
-
+                    return;
                 }
                 //$("#all-content").css('display', 'none');
 
@@ -126,7 +124,7 @@ function onDeviceReady() {
                                 $("#all-content").css('display', 'block');
                             }
 
-                            db.ref(/registered/ + text).once("value").then(function (participant) {
+                            db.ref('/registered/' + text).once("value").then(function (participant) {
                                 user = participant.val();
                                 if (user == null) {
                                     alert("Fraud alert!");
@@ -137,17 +135,17 @@ function onDeviceReady() {
 
                                     // registration's uid is 'registration'
                                     if ($("#event").val() == "registration") {
-                                        db.ref("/registered/" + user._iu + "/attended").set(true);
+                                        db.ref("/registered/" + user._id + "/attended").set(true);
                                     }
 
                                     var numScans;
-                                    db.ref(/events/ + $("#events").val() + "/scans/" + user._id).once("value").then(function (data) {
+                                    db.ref('/events/' + $("#events").val() + "/scans/" + user._id).once("value").then(function (data) {
                                         if (data.val() == null) {
                                             // new guy on the street
-                                            db.ref(/events/ + $("#events").val() + "/scans/" + user._id).set(1);
+                                            db.ref('/events/' + $("#events").val() + "/scans/" + user._id).set(1);
                                         } else if (selected["multi-entry"]) {
                                             // returning friend
-                                            db.ref(/events/ + $("#events").val() + "/scans/" + user._id).set(data.val() + 1);
+                                            db.ref('/events/' + $("#events").val() + "/scans/" + user._id).set(data.val() + 1);
                                         } else {
                                             // returning person who was not invited back
                                             alert("Re-entry is not aloud at this time.");
