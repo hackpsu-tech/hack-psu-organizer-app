@@ -93,6 +93,7 @@
 
     <!--Dropdown List-->
     <center id="content-wrapper">
+        <div id="manager-status" class="status">&nbsp</div>
         <div id="event-selector">
             <div class="btn-group">
                 <select id="events" class="dropdown-selector" onchange="visibleSection(this);">
@@ -101,67 +102,57 @@
             </div>
         </div>
     </center>
-    <div class="row">
-        <div id="manager-status" class="status">&nbsp</div>
-    </div>
+    <div id="manager-status" class="status">&nbsp</div>
+
+
 
     <!--First Name-->
-    <div class="row">
-        <div class="col-xs-offset-1">
-            <label class="" for="firstName">First Name</label>
-            <input class="" id="firstName" name="firstName" type="text" />
-        </div>
+    <div class="col-xs-offset-1">
+        <label class="" for="firstName">First Name</label>
+        <input class="" id="firstName" name="firstName" type="text" />
     </div>
 
     <!--Last Name-->
-    <div class="row">
-        <div class="col-xs-offset-1">
-            <label class="" for="lastName">Last Name</label>
-            <input class="" id="lastName" name="lastName" type="text" />
-        </div>
+    <div class="col-xs-offset-1">
+        <label class="" for="lastName">Last Name</label>
+        <input class="" id="lastName" name="lastName" type="text" />
     </div>
+
 
 
     <!--Shirt Size-->
-    <div class="row">
-        <div class="col-xs-offset-1">
-            <div id="shirtSize" style="display: none;">
-                <label class="" for="shirtSize">Shirt Size</label>
-                <input class="" id="shirtSize" name="shirtSize" type="text" />
-            </div>
+    <div class="col-xs-offset-1">
+        <div id="shirtSize" style="display: none;">
+            <label class="" for="shirtSize">Shirt Size</label>
+            <input class="" id="shirtSize" name="shirtSize" type="text" />
         </div>
     </div>
 
-    <div class="row">
-        <div id="status" class="status">&nbsp</div>
-    </div>
+
+    <div id="status" class="status">&nbsp</div>
+
 
     <!--Extra Credit-->
-    <div class="row">
-        <div class="col-xs-offset-1">
-            <div id="extraCredit" style="display: none;">
-                <label class="" for="extraCredit">Extra Credit</label>
-                <div class="col-xs--1">
-                    <select id="extra-credit" class="dropdown-selector">
-                        <option value="">Select Course for Credit</option>
-                    </select>
-                </div>
+    <div class="col-xs-offset-1">
+        <div id="extraCredit" style="display: none;">
+            <label class="" for="extraCredit">Extra Credit</label>
+            <div class="col-xs--1">
+                <select id="extra-credit" class="dropdown-selector">
+                    <option value="">Select Course for Credit</option>
+                </select>
             </div>
         </div>
     </div>
     
 
-    <div class="row">
-        <div id="status" class="status">&nbsp</div>
-    </div>
+    <div id="status" class="status">&nbsp</div>
+
 
     <!--Number of Time Scanned-->
-    <div class="row">
-        <div class="col-xs-offset-1">
-            <div id="timesScanned" style="display: none;">
-                <label class="" for="timesScanned">Times Scanned: </label>
-                <input class="" id="timesScanned" name="timesScanned" type="halftext" />
-            </div>
+    <div class="col-xs-offset-1">
+        <div id="timesScanned" style="display: none;">
+            <label class="" for="timesScanned">Times Scanned: </label>
+            <input class="" id="timesScanned" name="timesScanned" type="halftext" />
         </div>
     </div>
 
@@ -187,7 +178,7 @@
 
     <!--QR Scan-->
     <footer>
-        <div class="col-xs-12">
+        <div class="col-xs-10 col-xs-offset-1">
             <div id="scan" class="btn btn-primary btn-lg btn-block button">Scan</div>
         </div>
     </footer>
