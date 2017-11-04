@@ -49,7 +49,7 @@ function onDeviceReady() {
             $("#takePicture").click(function () {
                 navigator.camera.getPicture(function (imageURI) {
                     selectedImage = imageURI;
-                    clearActiveButton($("#choosePicture"));
+                    clearActiveButton($("#uploadPicture"));
                     setActiveButton($("#takePicture"));
                 }, function (message) {
                     console.log("Taking picture failed: " + message);
@@ -62,11 +62,11 @@ function onDeviceReady() {
                 });
             });
 
-            $("#choosePicture").click(function () {
+            $("#uploadPicture").click(function () {
                 navigator.camera.getPicture(function (imageURI) {
                     selectedImage = imageURI;
                     clearActiveButton($("#takePicture"));
-                    setActiveButton($("#choosePicture"));
+                    setActiveButton($("#uploadPicture"));
                 }, function (message) {
                     console.log("Image selection failed: " + message);
                     alert("Image Selection Failed");
