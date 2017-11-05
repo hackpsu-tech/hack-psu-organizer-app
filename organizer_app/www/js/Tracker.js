@@ -138,7 +138,6 @@ function onDeviceReady() {
                                     if ($("#event").val() == "registration") {
                                         db.ref("/registered/" + user._id + "/attended").set(true);
                                     }
-
                                     var numScans;
                                     db.ref('/events/' + $("#events").val() + "/scans/" + user._id).once("value").then(function (data) {
                                         if (data.val() == null) {
@@ -152,8 +151,8 @@ function onDeviceReady() {
                                             alert("Re-entry is not aloud at this time.");
                                         }
                                         //alert
-                                        alert("first name: " +  user.name_first + "\nlast name: "+ user.name_last + "\nShirt Size: " + user.shirt_size);
-
+                                        numScans = data.val();
+                                        alert("First name: " +  user.name_first + "\nLast name: "+ user.name_last + "\nTimes Scanned: " + numScans);
 
                                         // Display result
                                         $("#firstName").val(user.name_first);
